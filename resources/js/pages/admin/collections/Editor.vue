@@ -2,6 +2,7 @@
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import FormField from '@/components/admin/FormField.vue';
+import ImageUploader from '@/components/admin/ImageUploader.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 
 interface ProductPickerItem {
@@ -187,12 +188,9 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeyDown));
                 <div class="space-y-6">
                     <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card space-y-4">
                         <h3 class="font-serif text-sm font-semibold text-aura-slate">Hero Banner</h3>
-                        <FormField label="Hero Image URL" :error="form.errors.hero_image">
-                            <input v-model="form.hero_image" type="url" placeholder="https://..." class="w-full rounded-lg border border-aura-sage bg-aura-bg/30 px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:outline-none" />
+                        <FormField label="Hero Banner Image" :error="form.errors.hero_image">
+                            <ImageUploader v-model="form.hero_image" label="Upload collection banner" hint="PNG, JPG, WEBP up to 10MB" />
                         </FormField>
-                        <div v-if="form.hero_image" class="aspect-video w-full rounded-lg overflow-hidden border border-aura-sage bg-aura-bg">
-                            <img :src="form.hero_image" alt="Hero preview" class="h-full w-full object-cover" />
-                        </div>
                     </div>
 
                     <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card space-y-3">

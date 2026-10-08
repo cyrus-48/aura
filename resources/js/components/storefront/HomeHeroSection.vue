@@ -53,8 +53,8 @@ import { Link } from '@inertiajs/vue3';
                 class="relative order-1 h-[400px] w-full md:order-2 md:h-auto md:w-1/2"
             >
                 <img
-                    src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=1000&auto=format&fit=crop"
-                    alt="Woman in sustainable fashion"
+                    src="/images/hero_woman_model.jpg"
+                    alt="Aura & Oak editorial model in relaxed sustainable linen"
                     class="absolute inset-0 h-full w-full object-cover object-center md:object-top"
                 />
 

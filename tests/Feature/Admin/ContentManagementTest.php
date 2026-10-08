@@ -5,6 +5,8 @@ declare(strict_types=1);
 use App\Enums\UserRole;
 use App\Models\JournalPost;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function (): void {
@@ -110,4 +112,45 @@ test('administrators can view media library', function (): void {
             ->has('media')
             ->has('stats.total_assets')
         );
+});
+
+test('administrators can upload image files directly to the media library', function (): void {
+    Storage::fake('public');
+
+    $file = UploadedFile::fake()->image('editorial-linen.webp', 1200, 800);
+
+    $response = $this->actingAs($this->admin)->post(route('admin.media.upload'), [
+        'image' => $file,
+    ]);
+
+    $response->assertOk()
+        ->assertJson([
+            'success' => true,
+            'original_name' => 'editorial-linen.webp',
+        ])
+        ->assertJsonStructure(['success', 'url', 'original_name', 'size']);
+
+    $url = $response->json('url');
+    $storedPath = str_replace('/storage/', '', $url);
+
+    Storage::disk('public')->assertExists($storedPath);
+});
+
+test('media upload rejects invalid files and non-admin requests', function (): void {
+    Storage::fake('public');
+
+    $textDoc = UploadedFile::fake()->create('document.pdf', 100);
+
+    // Non-staff forbidden
+    $this->actingAs($this->customer)->post(route('admin.media.upload'), [
+        'image' => UploadedFile::fake()->image('photo.jpg'),
+    ])->assertForbidden();
+
+    // Invalid format validation failure for admin
+    $response = $this->actingAs($this->admin)->postJson(route('admin.media.upload'), [
+        'image' => $textDoc,
+    ]);
+
+    $response->assertUnprocessable()
+        ->assertJsonValidationErrors(['image']);
 });

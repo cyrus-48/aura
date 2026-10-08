@@ -9,6 +9,7 @@ use App\Models\Collection;
 use App\Models\JournalPost;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -70,6 +71,21 @@ class MediaLibraryController extends Controller
                 'size' => '1.4 MB',
                 'created_at' => $jp->created_at?->format('M d, Y') ?? '',
             ]);
+        }
+
+        // 4. Uploaded Files
+        if (Storage::disk('public')->exists('uploads')) {
+            foreach (Storage::disk('public')->files('uploads') as $uploadedFile) {
+                $filename = basename($uploadedFile);
+                $media->push([
+                    'id' => 'upload-'.$filename,
+                    'title' => 'Uploaded Asset ('.$filename.')',
+                    'url' => '/storage/'.$uploadedFile,
+                    'type' => 'Upload',
+                    'size' => number_format(Storage::disk('public')->size($uploadedFile) / 1024, 1).' KB',
+                    'created_at' => date('M d, Y', Storage::disk('public')->lastModified($uploadedFile)),
+                ]);
+            }
         }
 
         if ($search !== '') {

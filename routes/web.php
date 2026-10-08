@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Collection\CollectionIndexController;
 use App\Http\Controllers\Admin\Collection\CollectionStoreController;
 use App\Http\Controllers\Admin\Collection\CollectionUpdateController;
 use App\Http\Controllers\Admin\Content\MediaLibraryController;
+use App\Http\Controllers\Admin\Content\MediaUploadController;
 use App\Http\Controllers\Admin\Content\PageContentController;
 use App\Http\Controllers\Admin\Customer\CustomerDetailController;
 use App\Http\Controllers\Admin\Customer\CustomerIndexController;
@@ -183,6 +184,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'staff']
 
     // Media Library
     Route::get('/media', [MediaLibraryController::class, 'index'])->name('media.index');
+    Route::post('/media/upload', MediaUploadController::class)->name('media.upload');
 
     // Store Settings
     Route::get('/settings', StoreSettingIndexController::class)->name('settings.index');

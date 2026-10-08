@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import AdminMetricCard from '@/components/admin/AdminMetricCard.vue';
 import AdminPageHeader from '@/components/admin/AdminPageHeader.vue';
 import FilterBar from '@/components/admin/FilterBar.vue';
+import ImageUploader from '@/components/admin/ImageUploader.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import type { AdminMediaItem } from '@/types/content_admin';
 
@@ -14,6 +15,7 @@ const props = defineProps<{
 }>();
 
 const copiedId = ref<string | null>(null);
+const showUploader = ref(false);
 
 const copyUrl = (item: AdminMediaItem): void => {
     navigator.clipboard.writeText(item.url);
@@ -26,6 +28,10 @@ const copyUrl = (item: AdminMediaItem): void => {
 const applySearch = (search: string): void => {
     router.get('/admin/media', { search }, { preserveState: true, replace: true });
 };
+
+const onUploaded = (): void => {
+    router.reload({ only: ['media', 'stats'] });
+};
 </script>
 
 <template>
@@ -35,7 +41,34 @@ const applySearch = (search: string): void => {
         <AdminPageHeader
             title="Media & Photography Library"
             :subtitle="`High-resolution product imagery, collection campaign lookbooks, and editorial journal assets.`"
-        />
+        >
+            <template #actions>
+                <button
+                    type="button"
+                    class="inline-flex items-center gap-2 rounded-lg bg-aura-slate px-4 py-2 text-xs font-medium text-white shadow-xs transition hover:bg-aura-moss cursor-pointer"
+                    @click="showUploader = !showUploader"
+                >
+                    <i :class="showUploader ? 'fa-solid fa-xmark' : 'fa-solid fa-cloud-arrow-up'" />
+                    {{ showUploader ? 'Close Uploader' : 'Upload Assets' }}
+                </button>
+            </template>
+        </AdminPageHeader>
+
+        <!-- Expandable Upload Zone -->
+        <div v-if="showUploader" class="mb-6 rounded-xl border border-aura-sage bg-white p-5 shadow-card">
+            <div class="mb-3 flex items-center justify-between">
+                <div>
+                    <h3 class="font-serif text-sm font-semibold text-aura-slate">Upload Direct to Media Library</h3>
+                    <p class="text-[11px] text-aura-moss">Files are stored in public storage and immediately ready for products and campaigns.</p>
+                </div>
+            </div>
+            <ImageUploader
+                multiple
+                label="Click or drag photos here to upload"
+                hint="Supports PNG, JPG, WEBP, AVIF up to 10MB each"
+                @uploaded="onUploaded"
+            />
+        </div>
 
         <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <AdminMetricCard title="Total Media Assets" :amount="stats.total_assets.toString()" subtitle="Indexed image files" icon="fa-regular fa-image" />
@@ -76,7 +109,7 @@ const applySearch = (search: string): void => {
                             class="cursor-pointer text-[10px] font-semibold text-aura-slate hover:text-aura-accent"
                             @click="copyUrl(item)"
                         >
-                            <i :class="copiedId === item.id ? 'fa-solid fa-check text-emerald-600' : 'fa-regular fa-copy'"></i>
+                            <i :class="copiedId === item.id ? 'fa-solid fa-check text-emerald-600' : 'fa-regular fa-copy'" />
                             {{ copiedId === item.id ? 'Copied' : 'Copy' }}
                         </button>
                     </div>

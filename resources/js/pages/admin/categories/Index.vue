@@ -5,6 +5,7 @@ import AdminModal from '@/components/admin/AdminModal.vue';
 import AdminPageHeader from '@/components/admin/AdminPageHeader.vue';
 import EmptyState from '@/components/admin/EmptyState.vue';
 import FormField from '@/components/admin/FormField.vue';
+import ImageUploader from '@/components/admin/ImageUploader.vue';
 import SlideOver from '@/components/admin/SlideOver.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 
@@ -226,8 +227,8 @@ const confirmDelete = () => {
                         <option v-for="p in parent_options.filter((o) => !editingCategory || o.id !== editingCategory.id)" :key="p.id" :value="p.id">{{ p.name }}</option>
                     </select>
                 </FormField>
-                <FormField label="Image URL" :error="form.errors.image">
-                    <input v-model="form.image" type="url" placeholder="https://..." class="w-full rounded-lg border border-aura-sage bg-aura-bg/30 px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:bg-white focus:outline-none" />
+                <FormField label="Category Image" :error="form.errors.image">
+                    <ImageUploader v-model="form.image" compact label="Upload category image" />
                 </FormField>
                 <FormField label="Description" :error="form.errors.description">
                     <textarea v-model="form.description" rows="3" class="w-full rounded-lg border border-aura-sage bg-aura-bg/30 p-3 text-xs text-aura-slate focus:border-aura-slate focus:bg-white focus:outline-none" />

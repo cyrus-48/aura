@@ -3,6 +3,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import AdminPageHeader from '@/components/admin/AdminPageHeader.vue';
 import FormField from '@/components/admin/FormField.vue';
+import ImageUploader from '@/components/admin/ImageUploader.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import type { AdminJournalPostFormData } from '@/types/content_admin';
 
@@ -91,8 +92,8 @@ const submit = (): void => {
                     <FormField label="Estimated Read Time" :error="form.errors.read_time">
                         <input v-model="form.read_time" type="text" placeholder="e.g. 5 min read" class="w-full rounded-lg border border-aura-sage px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:outline-none" />
                     </FormField>
-                    <FormField label="Featured Cover Image URL" :error="form.errors.featured_image">
-                        <input v-model="form.featured_image" type="text" placeholder="https://..." class="w-full rounded-lg border border-aura-sage px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:outline-none" />
+                    <FormField label="Featured Cover Image" :error="form.errors.featured_image">
+                        <ImageUploader v-model="form.featured_image" compact label="Upload featured cover image" />
                     </FormField>
                     <FormField label="Publish Date" :error="form.errors.published_at">
                         <input v-model="form.published_at" type="date" class="w-full rounded-lg border border-aura-sage px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:outline-none" />

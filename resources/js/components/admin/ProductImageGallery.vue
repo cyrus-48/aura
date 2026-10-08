@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import ImageUploader from '@/components/admin/ImageUploader.vue';
 
 const props = defineProps<{
     primaryImage?: string | null;
@@ -11,9 +12,18 @@ const emit = defineEmits<{
     (e: 'update:galleryImages', images: string[]): void;
 }>();
 
+const showUrlInput = ref(false);
 const newImageUrl = ref('');
 
-const addImage = () => {
+const onUploadMultiple = (urls: string[]) => {
+    const current = [...props.galleryImages, ...urls];
+    emit('update:galleryImages', current);
+    if (!props.primaryImage && current.length > 0) {
+        emit('update:primaryImage', current[0]);
+    }
+};
+
+const addUrlImage = () => {
     const url = newImageUrl.value.trim();
     if (!url) return;
     const current = [...props.galleryImages, url];
@@ -22,6 +32,7 @@ const addImage = () => {
         emit('update:primaryImage', url);
     }
     newImageUrl.value = '';
+    showUrlInput.value = false;
 };
 
 const removeImage = (index: number) => {
@@ -43,24 +54,41 @@ const setPrimary = (url: string) => {
         <div class="mb-4 flex items-center justify-between">
             <div>
                 <h3 class="font-serif text-sm font-semibold text-aura-slate">Product Media</h3>
-                <p class="text-[11px] text-aura-moss">Upload or paste image URLs. The first image is the primary cover.</p>
+                <p class="text-[11px] text-aura-moss">Upload product shots or lookbook images. The first image is the primary cover.</p>
             </div>
+            <button
+                type="button"
+                class="text-xs text-aura-moss underline hover:text-aura-slate cursor-pointer"
+                @click="showUrlInput = !showUrlInput"
+            >
+                {{ showUrlInput ? 'Hide URL input' : 'Or paste URL' }}
+            </button>
         </div>
 
-        <div class="mb-4 flex gap-2">
+        <div class="mb-4">
+            <ImageUploader
+                multiple
+                label="Click to browse or drag & drop product photos"
+                hint="Upload one or multiple images directly (JPG, PNG, WEBP up to 10MB)"
+                compact
+                @uploaded-multiple="onUploadMultiple"
+            />
+        </div>
+
+        <div v-if="showUrlInput" class="mb-4 flex gap-2">
             <input
                 v-model="newImageUrl"
                 type="url"
                 placeholder="Paste image URL (e.g. https://...)"
                 class="flex-1 rounded-lg border border-aura-sage bg-aura-bg/30 px-3 py-2 text-xs text-aura-slate focus:border-aura-slate focus:bg-white focus:outline-none"
-                @keydown.enter.prevent="addImage"
+                @keydown.enter.prevent="addUrlImage"
             />
             <button
                 type="button"
                 class="rounded-lg bg-aura-slate px-3.5 py-2 text-xs font-medium text-white transition hover:bg-aura-moss cursor-pointer"
-                @click="addImage"
+                @click="addUrlImage"
             >
-                Add Image
+                Add Link
             </button>
         </div>
 
@@ -97,9 +125,8 @@ const setPrimary = (url: string) => {
                 </div>
             </div>
         </div>
-        <div v-else class="flex flex-col items-center justify-center rounded-lg border border-dashed border-aura-sage p-6 text-center text-aura-moss">
-            <i class="fa-regular fa-image mb-2 text-xl" />
-            <p class="text-xs">No media uploaded yet. Paste an image URL above.</p>
+        <div v-else class="flex flex-col items-center justify-center rounded-lg border border-dashed border-aura-sage p-4 text-center text-aura-moss">
+            <p class="text-xs">No media uploaded yet. Drop photos above to start building the gallery.</p>
         </div>
     </div>
 </template>
