@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FAQ | Aura & Oak</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- FontAwesome for Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            // Cool Sage & Slate Palette
+                            'aura-bg': '#F2F5F3', // Soft cool mint/white
+                            'aura-sage': '#DCE4DE', // Light sage
+                            'aura-slate': '#2C3634', // Deep slate green
+                            'aura-moss': '#5A6B65', // Mid-tone moss/stone
+                            'aura-accent': '#8A9A8E', // Muted accent green
+                        },
+                        fontFamily: {
+                            serif: ['"Playfair Display"', 'serif'],
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        boxShadow: {
+                            soft: '0 10px 40px -10px rgba(44, 54, 52, 0.08)',
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body
+        class="flex min-h-screen flex-col bg-aura-bg font-sans text-aura-slate antialiased selection:bg-aura-slate selection:text-white"
+    >
+        <!-- Navigation -->
+        <nav
+            class="relative z-50 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-6"
+        >
+            <!-- Logo -->
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="flex flex-col items-center">
+                    <h1
+                        class="font-serif text-xl tracking-[0.2em] uppercase md:text-2xl"
+                    >
+                        Aura & Oak
+                    </h1>
+                    <span
+                        class="mt-1 text-[8px] tracking-[0.4em] text-aura-moss uppercase md:text-[9px]"
+                        >Atelier</span
+                    >
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div
+                class="hidden space-x-10 text-[11px] font-medium tracking-widest uppercase lg:flex"
+            >
+                <a
+                    href="index.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <a
+                    href="shop.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Shop</a
+                >
+                <a
+                    href="collections.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Collections</a
+                >
+                <a
+                    href="journal.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Journal</a
+                >
+                <a
+                    href="story.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Our Story</a
+                >
+                <a
+                    href="contact.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Contact</a
+                >
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-lg md:space-x-6">
+                <button
+                    class="text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button
+                    class="hidden text-aura-moss transition hover:text-aura-accent sm:block"
+                >
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button
+                    class="relative text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span
+                        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aura-slate text-[9px] text-white"
+                        >2</span
+                    >
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="ml-2 text-aura-moss transition hover:text-aura-accent lg:hidden"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <header
+            class="mx-auto w-full max-w-[1400px] px-6 py-12 text-center md:py-20"
+        >
+            <span
+                class="mb-4 block text-[10px] tracking-[0.3em] text-aura-accent uppercase"
+                >Help Center</span
+            >
+            <h1
+                class="mb-6 font-serif text-4xl text-aura-slate md:text-5xl lg:text-6xl"
+            >
+                Frequently Asked Questions
+            </h1>
+            <p
+                class="mx-auto mb-10 max-w-xl text-sm font-light text-aura-moss md:text-base"
+            >
+                Find answers to common questions about our products, shipping,
+                returns, and sustainability practices.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="relative mx-auto max-w-xl">
+                <input
+                    type="text"
+                    placeholder="Search for answers..."
+                    class="w-full rounded-full border border-aura-sage bg-white px-6 py-4 text-sm placeholder-aura-moss shadow-soft transition focus:border-aura-slate focus:outline-none"
+                />
+                <button
+                    class="absolute top-1/2 right-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-aura-slate text-white transition hover:bg-aura-moss"
+                >
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="mx-auto mb-24 w-full max-w-[1400px] flex-grow px-6">
+            <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
+                <!-- Sidebar Navigation (Categories) -->
+                <aside class="w-full shrink-0 lg:w-64">
+                    <div class="sticky top-24">
+                        <h3
+                            class="mb-6 border-b border-aura-sage pb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Categories
+                        </h3>
+                        <ul class="space-y-4 text-sm">
+                            <li>
+                                <a
+                                    href="#orders"
+                                    class="group flex items-center justify-between font-medium text-aura-slate transition hover:text-aura-accent"
+                                >
+                                    <span>Orders & Shipping</span>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-[10px] opacity-0 transition group-hover:opacity-100"
+                                    ></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#returns"
+                                    class="group flex items-center justify-between text-aura-moss transition hover:text-aura-slate"
+                                >
+                                    <span>Returns & Exchanges</span>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-[10px] opacity-0 transition group-hover:opacity-100"
+                                    ></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#products"
+                                    class="group flex items-center justify-between text-aura-moss transition hover:text-aura-slate"
+                                >
+                                    <span>Products & Sizing</span>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-[10px] opacity-0 transition group-hover:opacity-100"
+                                    ></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#sustainability"
+                                    class="group flex items-center justify-between text-aura-moss transition hover:text-aura-slate"
+                                >
+                                    <span>Sustainability</span>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-[10px] opacity-0 transition group-hover:opacity-100"
+                                    ></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#account"
+                                    class="group flex items-center justify-between text-aura-moss transition hover:text-aura-slate"
+                                >
+                                    <span>Account & Payment</span>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-[10px] opacity-0 transition group-hover:opacity-100"
+                                    ></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Support CTA in Sidebar -->
+                        <div class="mt-12 rounded-2xl bg-aura-sage p-6">
+                            <i
+                                class="fa-regular fa-comments mb-4 block text-2xl text-aura-slate"
+                            ></i>
+                            <h4 class="mb-2 font-serif text-lg text-aura-slate">
+                                Still need help?
+                            </h4>
+                            <p class="mb-4 text-xs font-light text-aura-moss">
+                                Our concierge team is available to assist you.
+                            </p>
+                            <a
+                                href="contact.html"
+                                class="inline-flex items-center border-b border-aura-slate pb-1 text-[10px] font-medium tracking-widest text-aura-slate uppercase transition hover:border-aura-accent hover:text-aura-accent"
+                            >
+                                Contact Us
+                                <i
+                                    class="fa-solid fa-arrow-right ml-2 text-[8px]"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- FAQ Content Area -->
+                <div class="flex-1 space-y-16">
+                    <!-- Orders & Shipping -->
+                    <section id="orders">
+                        <h2
+                            class="mb-8 border-b border-aura-sage pb-4 font-serif text-3xl text-aura-slate"
+                        >
+                            Orders & Shipping
+                        </h2>
+                        <div class="space-y-0">
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        How long will it take to receive my
+                                        order?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Domestic orders (within the US) typically
+                                    arrive within 3-5 business days.
+                                    International orders can take 7-14 business
+                                    days depending on the destination and
+                                    customs processing. You will receive a
+                                    tracking number as soon as your order ships.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        Do you offer free shipping?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Yes! We offer free carbon-neutral shipping
+                                    on all domestic orders over $99. For orders
+                                    under $99, a flat rate of $8 applies.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        Can I change or cancel my order after
+                                        placing it?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We process orders quickly to ensure fast
+                                    delivery. If you need to make a change,
+                                    please contact us within 2 hours of placing
+                                    your order. Once an order has been shipped,
+                                    it cannot be canceled or modified.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Returns & Exchanges -->
+                    <section id="returns">
+                        <h2
+                            class="mb-8 border-b border-aura-sage pb-4 font-serif text-3xl text-aura-slate"
+                        >
+                            Returns & Exchanges
+                        </h2>
+                        <div class="space-y-0">
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        What is your return policy?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We offer a 45-day return policy on all
+                                    unworn items with original tags attached.
+                                    Returns are free within the US. Please visit
+                                    our Returns Portal to initiate an exchange
+                                    or return.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        How do I initiate a return or exchange?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Simply log into your account, go to your
+                                    order history, and select the item you wish
+                                    to return. Follow the prompts to print your
+                                    prepaid shipping label. Once we receive your
+                                    return, we will process your refund or
+                                    exchange within 3-5 business days.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        Are sale items final sale?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Yes, items purchased during a final sale
+                                    promotion are not eligible for return or
+                                    exchange. This will be clearly marked on the
+                                    product page and at checkout.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Products & Sizing -->
+                    <section id="products">
+                        <h2
+                            class="mb-8 border-b border-aura-sage pb-4 font-serif text-3xl text-aura-slate"
+                        >
+                            Products & Sizing
+                        </h2>
+                        <div class="space-y-0">
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        How do I know what size to order?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We provide detailed size guides on every
+                                    product page. If you are between sizes, we
+                                    generally recommend sizing up for a more
+                                    relaxed fit, or sizing down for a more
+                                    tailored look. Feel free to email us for
+                                    specific measurements.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        How should I care for my linen and
+                                        organic cotton pieces?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We recommend washing linen and organic
+                                    cotton in cold water on a gentle cycle, or
+                                    hand washing. Lay flat to dry or tumble dry
+                                    on low. Linen gets softer with every wash.
+                                    Avoid bleach and fabric softeners.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sustainability -->
+                    <section id="sustainability">
+                        <h2
+                            class="mb-8 border-b border-aura-sage pb-4 font-serif text-3xl text-aura-slate"
+                        >
+                            Sustainability
+                        </h2>
+                        <div class="space-y-0">
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        What materials do you use?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We exclusively use organic, recycled, and
+                                    low-impact materials. Our primary fabrics
+                                    include GOTS-certified organic cotton,
+                                    European flax linen, Tencel™ Lyocell, and
+                                    vegetable-tanned leather.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        Is your packaging plastic-free?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Yes! All of our packaging is 100%
+                                    plastic-free. We use recycled cardboard
+                                    boxes, paper tape, and compostable mailers.
+                                    Even our garment bags are made from
+                                    biodegradable materials.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Account & Payment -->
+                    <section id="account">
+                        <h2
+                            class="mb-8 border-b border-aura-sage pb-4 font-serif text-3xl text-aura-slate"
+                        >
+                            Account & Payment
+                        </h2>
+                        <div class="space-y-0">
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        What payment methods do you accept?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    We accept all major credit cards (Visa,
+                                    Mastercard, American Express), PayPal, Apple
+                                    Pay, Google Pay, and Shop Pay.
+                                </div>
+                            </div>
+                            <!-- FAQ Item -->
+                            <div class="border-b border-aura-sage py-6">
+                                <button
+                                    class="group flex w-full items-center justify-between text-left"
+                                >
+                                    <h3
+                                        class="pr-4 text-sm font-medium text-aura-slate transition group-hover:text-aura-accent"
+                                    >
+                                        How do I reset my password?
+                                    </h3>
+                                    <i
+                                        class="fa-solid fa-plus shrink-0 text-xs text-aura-moss transition-transform duration-300"
+                                    ></i>
+                                </button>
+                                <div
+                                    class="mt-4 hidden text-sm leading-relaxed font-light text-aura-moss"
+                                >
+                                    Click on the "Account" icon in the top right
+                                    corner, then select "Forgot Password". Enter
+                                    your email address, and we will send you a
+                                    link to reset your password.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Features Banner -->
+        <footer class="border-t border-aura-sage bg-white/50 py-12">
+            <div
+                class="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-leaf text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Carbon Neutral
+                        </h4>
+                        <p class="text-[10px]">On all deliveries</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-arrow-rotate-left text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Easy Exchanges
+                        </h4>
+                        <p class="text-[10px]">45-day return policy</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Secure Payment
+                        </h4>
+                        <p class="text-[10px]">100% secure checkout</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-headset text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Concierge Support
+                        </h4>
+                        <p class="text-[10px]">We're here to help</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JavaScript for FAQ Accordion -->
+        <script>
+            document.querySelectorAll('.border-b button').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+
+                    // Toggle visibility
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.classList.add('hidden');
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Terms & Conditions | Aura & Oak</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- FontAwesome for Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            // Cool Sage & Slate Palette
+                            'aura-bg': '#F2F5F3', // Soft cool mint/white
+                            'aura-sage': '#DCE4DE', // Light sage
+                            'aura-slate': '#2C3634', // Deep slate green
+                            'aura-moss': '#5A6B65', // Mid-tone moss/stone
+                            'aura-accent': '#8A9A8E', // Muted accent green
+                        },
+                        fontFamily: {
+                            serif: ['"Playfair Display"', 'serif'],
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        boxShadow: {
+                            soft: '0 10px 40px -10px rgba(44, 54, 52, 0.08)',
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            /* Smooth scrolling for anchor links */
+            html {
+                scroll-behavior: smooth;
+            }
+            /* Adjust scroll margin for sticky nav */
+            section[id] {
+                scroll-margin-top: 6rem;
+            }
+        </style>
+    </head>
+    <body
+        class="flex min-h-screen flex-col bg-aura-bg font-sans text-aura-slate antialiased selection:bg-aura-slate selection:text-white"
+    >
+        <!-- Navigation -->
+        <nav
+            class="relative z-50 mx-auto flex w-full max-w-[1400px] items-center justify-between border-b border-aura-sage px-6 py-6"
+        >
+            <!-- Logo -->
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="flex flex-col items-center">
+                    <h1
+                        class="font-serif text-xl tracking-[0.2em] uppercase md:text-2xl"
+                    >
+                        Aura & Oak
+                    </h1>
+                    <span
+                        class="mt-1 text-[8px] tracking-[0.4em] text-aura-moss uppercase md:text-[9px]"
+                        >Atelier</span
+                    >
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div
+                class="hidden space-x-10 text-[11px] font-medium tracking-widest uppercase lg:flex"
+            >
+                <a
+                    href="index.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <a
+                    href="shop.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Shop</a
+                >
+                <a
+                    href="collections.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Collections</a
+                >
+                <a
+                    href="journal.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Journal</a
+                >
+                <a
+                    href="story.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Our Story</a
+                >
+                <a
+                    href="contact.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Contact</a
+                >
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-lg md:space-x-6">
+                <button
+                    class="text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button
+                    class="hidden text-aura-moss transition hover:text-aura-accent sm:block"
+                >
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button
+                    class="relative text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span
+                        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aura-slate text-[9px] text-white"
+                        >3</span
+                    >
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="ml-2 text-aura-moss transition hover:text-aura-accent lg:hidden"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <header
+            class="mx-auto w-full max-w-[1400px] px-6 py-12 text-center md:py-20"
+        >
+            <span
+                class="mb-4 block text-[10px] tracking-[0.3em] text-aura-accent uppercase"
+                >Legal</span
+            >
+            <h1
+                class="mb-6 font-serif text-4xl text-aura-slate md:text-5xl lg:text-6xl"
+            >
+                Terms & Conditions
+            </h1>
+            <p
+                class="mx-auto max-w-xl text-sm font-light text-aura-moss md:text-base"
+            >
+                Please read these terms and conditions carefully before using
+                our website or placing an order.
+            </p>
+            <p
+                class="mt-6 text-[10px] tracking-widest text-aura-moss uppercase"
+            >
+                Last Updated: October 12, 2024
+            </p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="mx-auto mb-24 w-full max-w-[1400px] flex-grow px-6">
+            <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
+                <!-- Table of Contents Sidebar -->
+                <aside class="w-full shrink-0 lg:w-64">
+                    <div class="sticky top-24">
+                        <h3
+                            class="mb-6 border-b border-aura-sage pb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Table of Contents
+                        </h3>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a
+                                    href="#introduction"
+                                    class="font-medium text-aura-slate transition hover:text-aura-accent"
+                                    >1. Introduction</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#use-of-website"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >2. Use of Website</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#products-pricing"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >3. Products & Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#orders-payment"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >4. Orders & Payment</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#shipping-delivery"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >5. Shipping & Delivery</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#returns-refunds"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >6. Returns & Refunds</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#intellectual-property"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >7. Intellectual Property</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#privacy"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >8. Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#limitation-liability"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >9. Limitation of Liability</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#governing-law"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >10. Governing Law</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#contact"
+                                    class="text-aura-moss transition hover:text-aura-slate"
+                                    >11. Contact Us</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Terms Content -->
+                <div
+                    class="max-w-3xl flex-1 space-y-12 text-sm leading-relaxed font-light text-aura-moss"
+                >
+                    <!-- 1. Introduction -->
+                    <section id="introduction">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            1. Introduction
+                        </h2>
+                        <p class="mb-4">
+                            Welcome to Aura & Oak. These Terms and Conditions
+                            ("Terms") govern your use of the Aura & Oak website
+                            (the "Site") and your purchase of any products from
+                            the Site. By accessing or using the Site, you agree
+                            to be bound by these Terms. If you do not agree with
+                            any part of these Terms, you must not use the Site.
+                        </p>
+                        <p>
+                            Aura & Oak reserves the right to update or modify
+                            these Terms at any time without prior notice. Your
+                            continued use of the Site following any changes
+                            constitutes your acceptance of the new Terms.
+                        </p>
+                    </section>
+
+                    <!-- 2. Use of Website -->
+                    <section id="use-of-website">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            2. Use of Website
+                        </h2>
+                        <p class="mb-4">
+                            You agree to use the Site only for lawful purposes
+                            and in a manner that does not infringe the rights
+                            of, or restrict or inhibit the use and enjoyment of,
+                            this Site by any third party. Prohibited behavior
+                            includes harassing or causing distress or
+                            inconvenience to any other user, transmitting
+                            obscene or offensive content, or disrupting the
+                            normal flow of dialogue within the Site.
+                        </p>
+                        <p>
+                            You must not misuse our Site by knowingly
+                            introducing viruses, trojans, worms, logic bombs, or
+                            other material that is malicious or technologically
+                            harmful.
+                        </p>
+                    </section>
+
+                    <!-- 3. Products & Pricing -->
+                    <section id="products-pricing">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            3. Products & Pricing
+                        </h2>
+                        <p class="mb-4">
+                            All products are subject to availability. We reserve
+                            the right to discontinue any product at any time. We
+                            have made every effort to display as accurately as
+                            possible the colors and images of our products that
+                            appear on the Site. We cannot guarantee that your
+                            computer monitor's display of any color will be
+                            accurate.
+                        </p>
+                        <p class="mb-4">
+                            Prices for our products are subject to change
+                            without notice. We reserve the right to modify or
+                            discontinue the Service (or any part or content
+                            thereof) without notice at any time.
+                        </p>
+                        <p>
+                            All prices are displayed in USD and are exclusive of
+                            applicable taxes and shipping costs, which will be
+                            added to your total at checkout.
+                        </p>
+                    </section>
+
+                    <!-- 4. Orders & Payment -->
+                    <section id="orders-payment">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            4. Orders & Payment
+                        </h2>
+                        <p class="mb-4">
+                            By placing an order, you are offering to purchase a
+                            product on and subject to these Terms. All orders
+                            are subject to availability and confirmation of the
+                            order price.
+                        </p>
+                        <p class="mb-4">
+                            We reserve the right to refuse any order you place
+                            with us. We may, in our sole discretion, limit or
+                            cancel quantities purchased per person, per
+                            household, or per order. In the event that we make a
+                            change to or cancel an order, we will notify you by
+                            contacting the email and/or billing address/phone
+                            number provided at the time the order was made.
+                        </p>
+                        <p>
+                            Payment must be made at the time of placing your
+                            order. We accept all major credit cards, PayPal,
+                            Apple Pay, and Google Pay. All payments are
+                            processed securely through our third-party payment
+                            processors.
+                        </p>
+                    </section>
+
+                    <!-- 5. Shipping & Delivery -->
+                    <section id="shipping-delivery">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            5. Shipping & Delivery
+                        </h2>
+                        <p class="mb-4">
+                            We offer carbon-neutral shipping on all orders.
+                            Domestic orders (within the US) typically arrive
+                            within 3-5 business days. International orders can
+                            take 7-14 business days depending on the destination
+                            and customs processing.
+                        </p>
+                        <p>
+                            Risk of loss and title for items purchased from our
+                            Site pass to you upon delivery of the items to the
+                            carrier. You are responsible for filing any claims
+                            with carriers for damaged and/or lost shipments.
+                        </p>
+                    </section>
+
+                    <!-- 6. Returns & Refunds -->
+                    <section id="returns-refunds">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            6. Returns & Refunds
+                        </h2>
+                        <p class="mb-4">
+                            We offer a 45-day return policy on all unworn items
+                            with original tags attached. Returns are free within
+                            the US. To initiate a return, please visit our
+                            Returns Portal.
+                        </p>
+                        <p class="mb-4">
+                            Once your return is received and inspected, we will
+                            send you an email to notify you that we have
+                            received your returned item. We will also notify you
+                            of the approval or rejection of your refund. If
+                            approved, your refund will be processed, and a
+                            credit will automatically be applied to your credit
+                            card or original method of payment, within 3-5
+                            business days.
+                        </p>
+                        <p>
+                            Sale items are final sale and are not eligible for
+                            return or exchange.
+                        </p>
+                    </section>
+
+                    <!-- 7. Intellectual Property -->
+                    <section id="intellectual-property">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            7. Intellectual Property
+                        </h2>
+                        <p class="mb-4">
+                            All content included on this Site, such as text,
+                            graphics, logos, images, audio clips, digital
+                            downloads, and data compilations, is the property of
+                            Aura & Oak or its content suppliers and protected by
+                            international copyright laws.
+                        </p>
+                        <p>
+                            The Aura & Oak name, logo, and all related names,
+                            design marks, and slogans are trademarks of Aura &
+                            Oak. You may not use such marks without our prior
+                            written permission.
+                        </p>
+                    </section>
+
+                    <!-- 8. Privacy Policy -->
+                    <section id="privacy">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            8. Privacy Policy
+                        </h2>
+                        <p class="mb-4">
+                            Your submission of personal information through the
+                            Site is governed by our Privacy Policy. Please
+                            review our Privacy Policy to understand our
+                            practices regarding the collection, use, and
+                            disclosure of your personal information.
+                        </p>
+                        <p>
+                            We are committed to protecting your privacy and
+                            ensuring that your personal data is handled in
+                            accordance with applicable data protection laws,
+                            including GDPR and CCPA.
+                        </p>
+                    </section>
+
+                    <!-- 9. Limitation of Liability -->
+                    <section id="limitation-liability">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            9. Limitation of Liability
+                        </h2>
+                        <p class="mb-4">
+                            To the fullest extent permitted by applicable law,
+                            Aura & Oak shall not be liable for any indirect,
+                            incidental, special, consequential, or punitive
+                            damages, or any loss of profits or revenues, whether
+                            incurred directly or indirectly, or any loss of
+                            data, use, goodwill, or other intangible losses,
+                            resulting from your use of the Site or purchase of
+                            products.
+                        </p>
+                        <p>
+                            In no case shall Aura & Oak, our directors,
+                            officers, employees, affiliates, agents,
+                            contractors, interns, suppliers, service providers,
+                            or licensors be liable for any injury, loss, claim,
+                            or any direct, indirect, incidental, punitive,
+                            special, or consequential damages of any kind.
+                        </p>
+                    </section>
+
+                    <!-- 10. Governing Law -->
+                    <section id="governing-law">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            10. Governing Law
+                        </h2>
+                        <p class="mb-4">
+                            These Terms and Conditions and any separate
+                            agreements whereby we provide you Services shall be
+                            governed by and construed in accordance with the
+                            laws of the State of Oregon, United States.
+                        </p>
+                        <p>
+                            Any dispute arising from these Terms shall be
+                            resolved exclusively in the state or federal courts
+                            located in Multnomah County, Oregon.
+                        </p>
+                    </section>
+
+                    <!-- 11. Contact Us -->
+                    <section id="contact">
+                        <h2
+                            class="mb-6 border-b border-aura-sage pb-3 font-serif text-2xl text-aura-slate md:text-3xl"
+                        >
+                            11. Contact Us
+                        </h2>
+                        <p class="mb-6">
+                            If you have any questions about these Terms and
+                            Conditions, please contact our concierge team:
+                        </p>
+                        <div
+                            class="space-y-3 rounded-2xl border border-aura-sage bg-white p-6"
+                        >
+                            <p class="flex items-center text-xs">
+                                <i
+                                    class="fa-regular fa-envelope w-5 text-aura-accent"
+                                ></i>
+                                concierge@auraandoak.com
+                            </p>
+                            <p class="flex items-center text-xs">
+                                <i
+                                    class="fa-solid fa-phone w-5 text-aura-accent"
+                                ></i>
+                                +1 (800) 555-0199
+                            </p>
+                            <p class="flex items-center text-xs">
+                                <i
+                                    class="fa-solid fa-location-dot w-5 text-aura-accent"
+                                ></i>
+                                124 Greenway Blvd, Portland, OR 97201
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Features Banner -->
+        <footer class="border-t border-aura-sage bg-white/50 py-12">
+            <div
+                class="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-leaf text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Carbon Neutral
+                        </h4>
+                        <p class="text-[10px]">On all deliveries</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-arrow-rotate-left text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Easy Exchanges
+                        </h4>
+                        <p class="text-[10px]">45-day return policy</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Secure Payment
+                        </h4>
+                        <p class="text-[10px]">100% secure checkout</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-headset text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Concierge Support
+                        </h4>
+                        <p class="text-[10px]">We're here to help</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

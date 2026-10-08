@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Journal | Aura & Oak</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- FontAwesome for Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            // Cool Sage & Slate Palette
+                            'aura-bg': '#F2F5F3', // Soft cool mint/white
+                            'aura-sage': '#DCE4DE', // Light sage
+                            'aura-slate': '#2C3634', // Deep slate green
+                            'aura-moss': '#5A6B65', // Mid-tone moss/stone
+                            'aura-accent': '#8A9A8E', // Muted accent green
+                        },
+                        fontFamily: {
+                            serif: ['"Playfair Display"', 'serif'],
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        boxShadow: {
+                            soft: '0 10px 40px -10px rgba(44, 54, 52, 0.08)',
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body
+        class="flex min-h-screen flex-col bg-aura-bg font-sans text-aura-slate antialiased selection:bg-aura-slate selection:text-white"
+    >
+        <!-- Navigation -->
+        <nav
+            class="relative z-50 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-6"
+        >
+            <!-- Logo -->
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="flex flex-col items-center">
+                    <h1
+                        class="font-serif text-xl tracking-[0.2em] uppercase md:text-2xl"
+                    >
+                        Aura & Oak
+                    </h1>
+                    <span
+                        class="mt-1 text-[8px] tracking-[0.4em] text-aura-moss uppercase md:text-[9px]"
+                        >Atelier</span
+                    >
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div
+                class="hidden space-x-10 text-[11px] font-medium tracking-widest uppercase lg:flex"
+            >
+                <a
+                    href="index.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <a
+                    href="shop.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Shop</a
+                >
+                <a
+                    href="collections.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Collections</a
+                >
+                <a
+                    href="journal.html"
+                    class="border-b border-aura-slate pb-1 text-aura-slate"
+                    >Journal</a
+                >
+                <a
+                    href="#"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Our Story</a
+                >
+                <a
+                    href="#"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Contact</a
+                >
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-lg md:space-x-6">
+                <button
+                    class="text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button
+                    class="hidden text-aura-moss transition hover:text-aura-accent sm:block"
+                >
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button
+                    class="relative text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span
+                        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aura-slate text-[9px] text-white"
+                        >2</span
+                    >
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="ml-2 text-aura-moss transition hover:text-aura-accent lg:hidden"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <header
+            class="mx-auto w-full max-w-[1400px] px-6 py-12 text-center md:py-20"
+        >
+            <span
+                class="mb-4 block text-[10px] tracking-[0.3em] text-aura-accent uppercase"
+                >Stories & Inspiration</span
+            >
+            <h1
+                class="mb-6 font-serif text-4xl text-aura-slate md:text-5xl lg:text-7xl"
+            >
+                The Journal
+            </h1>
+            <p
+                class="mx-auto max-w-xl text-sm font-light text-aura-moss md:text-base"
+            >
+                Exploring the intersection of slow fashion, sustainable living,
+                and the art of intentional dressing.
+            </p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="mx-auto mb-24 w-full max-w-[1400px] flex-grow px-6">
+            <!-- Featured Article Hero -->
+            <section class="mb-20">
+                <a
+                    href="#"
+                    class="group relative flex h-auto flex-col overflow-hidden rounded-[1.5rem] shadow-soft md:rounded-[2rem] lg:h-[550px] lg:flex-row"
+                >
+                    <!-- Image -->
+                    <div
+                        class="h-[300px] w-full overflow-hidden lg:h-full lg:w-3/5"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1200&auto=format&fit=crop"
+                            alt="The Art of Slow Fashion"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <!-- Content -->
+                    <div
+                        class="flex w-full flex-col justify-center bg-white p-8 md:p-12 lg:w-2/5 lg:p-16"
+                    >
+                        <div
+                            class="mb-6 flex items-center space-x-3 text-[10px] tracking-widest text-aura-moss uppercase"
+                        >
+                            <span class="bg-aura-sage px-3 py-1 text-aura-slate"
+                                >Featured</span
+                            >
+                            <span>Sustainability</span>
+                        </div>
+                        <h2
+                            class="mb-6 font-serif text-3xl leading-tight text-aura-slate transition group-hover:text-aura-accent md:text-4xl lg:text-5xl"
+                        >
+                            The Art of Slow Fashion: Why Less is More
+                        </h2>
+                        <p
+                            class="mb-8 text-sm leading-relaxed font-light text-aura-moss"
+                        >
+                            In a world of fast trends and disposable clothing,
+                            we explore the profound impact of slowing down our
+                            consumption habits. Discover how building a capsule
+                            wardrobe of timeless, high-quality pieces can
+                            transform not just your style, but your relationship
+                            with the planet.
+                        </p>
+                        <div class="mt-auto flex items-center justify-between">
+                            <span
+                                class="text-[10px] tracking-widest text-aura-moss uppercase"
+                                >Oct 12, 2024 • 5 Min Read</span
+                            >
+                            <span
+                                class="flex h-10 w-10 items-center justify-center rounded-full border border-aura-sage text-aura-slate transition group-hover:bg-aura-slate group-hover:text-white"
+                            >
+                                <i
+                                    class="fa-solid fa-arrow-right -rotate-45 text-xs transition duration-300 group-hover:rotate-0"
+                                ></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </section>
+
+            <!-- Journal Toolbar & Filters -->
+            <div
+                class="mb-10 flex flex-col items-center justify-between gap-6 border-b border-aura-sage pb-4 md:flex-row"
+            >
+                <div
+                    class="no-scrollbar flex w-full space-x-6 overflow-x-auto pb-2 md:w-auto md:pb-0"
+                >
+                    <button
+                        class="border-b border-aura-slate pb-1 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-slate uppercase"
+                    >
+                        All Posts
+                    </button>
+                    <button
+                        class="pb-1 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Sustainability
+                    </button>
+                    <button
+                        class="pb-1 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Style Guides
+                    </button>
+                    <button
+                        class="pb-1 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Behind the Seams
+                    </button>
+                    <button
+                        class="pb-1 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Travel
+                    </button>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input
+                        type="text"
+                        placeholder="Search the journal..."
+                        class="w-full border-b border-aura-accent bg-transparent pb-2 text-sm placeholder-aura-moss transition focus:border-aura-slate focus:outline-none"
+                    />
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute right-0 bottom-2 text-xs text-aura-moss"
+                    ></i>
+                </div>
+            </div>
+
+            <!-- Article Grid -->
+            <div
+                class="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3"
+            >
+                <!-- Article 1 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop"
+                            alt="Linen Guide"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Style Guides</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Oct 05, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        The Ultimate Guide to Caring for Your Linen Pieces
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        Linen is one of the oldest and most sustainable fabrics
+                        in the world. Learn how to wash, dry, and store your
+                        linen garments to ensure they last a lifetime.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+
+                <!-- Article 2 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop"
+                            alt="Behind the Seams"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Behind the Seams</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Sep 28, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        Meet the Artisans: The Hands Behind Our Knitwear
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        We traveled to the highlands to meet the talented women
+                        who hand-knit our signature sweaters using traditional
+                        techniques passed down through generations.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+
+                <!-- Article 3 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=800&auto=format&fit=crop"
+                            alt="Travel Light"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Travel</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Sep 15, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        Packing Light: A Capsule Wardrobe for Your Next Escape
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        How to pack for a two-week trip with only a carry-on. We
+                        share our tips for selecting versatile, breathable
+                        pieces that mix and match effortlessly.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+
+                <!-- Article 4 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop"
+                            alt="Sustainable Materials"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Sustainability</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Sep 02, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        Why We Use Vegetable-Tanned Leather
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        Unlike chrome-tanned leather, vegetable tanning uses
+                        natural tannins found in tree bark. It's better for the
+                        environment and ages beautifully over time.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+
+                <!-- Article 5 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop"
+                            alt="Seasonal Styling"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Style Guides</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Aug 24, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        Transitioning Your Wardrobe from Summer to Autumn
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        Don't pack away your summer dresses just yet. Discover
+                        how to layer your favorite warm-weather pieces to create
+                        cozy, autumnal looks.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+
+                <!-- Article 6 -->
+                <a href="#" class="group flex cursor-pointer flex-col">
+                    <div
+                        class="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=800&auto=format&fit=crop"
+                            alt="Zero Waste"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                    </div>
+                    <div
+                        class="mb-3 flex items-center space-x-3 text-[9px] tracking-widest text-aura-moss uppercase"
+                    >
+                        <span>Sustainability</span>
+                        <span
+                            class="h-1 w-1 rounded-full bg-aura-accent"
+                        ></span>
+                        <span>Aug 10, 2024</span>
+                    </div>
+                    <h3
+                        class="mb-3 font-serif text-2xl leading-tight text-aura-slate transition group-hover:text-aura-accent"
+                    >
+                        Our Zero-Waste Initiative: What Happens to Our Scraps?
+                    </h3>
+                    <p
+                        class="mb-4 line-clamp-3 text-sm leading-relaxed font-light text-aura-moss"
+                    >
+                        We believe in using every part of the fabric. Learn how
+                        our leftover materials are repurposed into accessories,
+                        patchwork pieces, and community projects.
+                    </p>
+                    <span
+                        class="mt-auto flex items-center text-[10px] font-medium tracking-widest text-aura-slate uppercase transition group-hover:text-aura-accent"
+                    >
+                        Read Article
+                        <i
+                            class="fa-solid fa-arrow-right ml-2 text-[8px] transition group-hover:translate-x-1"
+                        ></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-16 flex items-center justify-center space-x-2">
+                <button
+                    class="flex h-8 w-8 cursor-not-allowed items-center justify-center border border-aura-sage text-aura-moss transition hover:border-aura-slate hover:text-aura-slate"
+                >
+                    <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                </button>
+                <button
+                    class="flex h-8 w-8 items-center justify-center border border-aura-slate bg-aura-slate text-xs text-white transition"
+                >
+                    1
+                </button>
+                <button
+                    class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                >
+                    2
+                </button>
+                <button
+                    class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                >
+                    3
+                </button>
+                <span class="px-1 text-aura-moss">...</span>
+                <button
+                    class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                >
+                    5
+                </button>
+                <button
+                    class="flex h-8 w-8 items-center justify-center border border-aura-sage text-aura-moss transition hover:border-aura-slate hover:text-aura-slate"
+                >
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- Newsletter / CTA Section -->
+            <section class="mt-24">
+                <div
+                    class="relative overflow-hidden rounded-[1.5rem] bg-aura-slate p-10 text-center md:rounded-[2rem] md:p-20"
+                >
+                    <!-- Decorative background element -->
+                    <div
+                        class="absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl"
+                    ></div>
+                    <div
+                        class="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-white/5 blur-3xl"
+                    ></div>
+
+                    <div class="relative z-10 mx-auto max-w-xl">
+                        <h2
+                            class="mb-4 font-serif text-3xl text-white md:text-4xl"
+                        >
+                            Never Miss a Story
+                        </h2>
+                        <p class="mb-8 text-sm font-light text-gray-400">
+                            Subscribe to receive our latest journal entries,
+                            styling tips, and sustainable living inspiration
+                            directly to your inbox.
+                        </p>
+                        <form
+                            class="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
+                        >
+                            <input
+                                type="email"
+                                placeholder="Your email address"
+                                class="flex-1 border border-white/20 bg-white/10 px-6 py-4 text-sm text-white placeholder-gray-400 transition focus:border-white focus:outline-none"
+                            />
+                            <button
+                                type="submit"
+                                class="bg-white px-8 py-4 text-[10px] font-medium tracking-widest whitespace-nowrap text-aura-slate uppercase transition hover:bg-aura-sage"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                        <p class="mt-4 text-[9px] text-gray-500">
+                            By subscribing, you agree to our Privacy Policy.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Features Banner -->
+        <footer class="border-t border-aura-sage bg-white/50 py-12">
+            <div
+                class="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-leaf text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Carbon Neutral
+                        </h4>
+                        <p class="text-[10px]">On all deliveries</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-arrow-rotate-left text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Easy Exchanges
+                        </h4>
+                        <p class="text-[10px]">45-day return policy</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Secure Payment
+                        </h4>
+                        <p class="text-[10px]">100% secure checkout</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-headset text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Concierge Support
+                        </h4>
+                        <p class="text-[10px]">We're here to help</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Aura & Oak Admin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aura-bg': '#F2F5F3',
+                        'aura-sage': '#DCE4DE',
+                        'aura-slate': '#2C3634',
+                        'aura-moss': '#5A6B65',
+                        'aura-accent': '#8A9A8E',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -4px rgba(44, 54, 52, 0.06)',
+                        'card': '0 1px 3px rgba(44, 54, 52, 0.04), 0 1px 2px rgba(44, 54, 52, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar utility */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sidebar collapse transition */
+        .sidebar { transition: width 0.25s ease, transform 0.25s ease; }
+        .sidebar-text { transition: opacity 0.15s ease; }
+        .sidebar.collapsed { width: 4.5rem; }
+        .sidebar.collapsed .sidebar-text { opacity: 0; pointer-events: none; width: 0; }
+        .sidebar.collapsed .sidebar-header { justify-content: center; }
+        .sidebar.collapsed .sidebar-logo-sub { display: none; }
+        .sidebar.collapsed .sidebar-badge { display: none; }
+        .sidebar.collapsed .nav-item { justify-content: center; padding-left: 0; padding-right: 0; }
+        .sidebar.collapsed .nav-item i { margin-right: 0; }
+
+        /* Sparkline bars */
+        .spark-bar { transition: all 0.2s ease; }
+        .spark-bar:hover { opacity: 0.8; }
+
+        /* Table row hover */
+        .data-row:hover { background-color: #F2F5F3; }
+
+        /* Chart bars */
+        .chart-bar { transition: all 0.25s ease; }
+        .chart-bar:hover { opacity: 0.85; }
+
+        /* Custom scrollbar for main content */
+        .main-scroll::-webkit-scrollbar { width: 8px; }
+        .main-scroll::-webkit-scrollbar-track { background: transparent; }
+        .main-scroll::-webkit-scrollbar-thumb { background: #DCE4DE; border-radius: 4px; }
+        .main-scroll::-webkit-scrollbar-thumb:hover { background: #8A9A8E; }
+
+        /* Mobile overlay */
+        .mobile-overlay { backdrop-filter: blur(2px); }
+    </style>
+</head>
+<body class="bg-aura-bg text-aura-slate font-sans antialiased selection:bg-aura-slate selection:text-white overflow-hidden">
+
+    <!-- ============================================ -->
+    <!-- MOBILE OVERLAY -->
+    <!-- ============================================ -->
+    <div id="mobileOverlay" class="mobile-overlay fixed inset-0 z-40 hidden bg-aura-slate/40 lg:hidden" onclick="toggleSidebar()"></div>
+
+    <!-- ============================================ -->
+    <!-- APP SHELL -->
+    <!-- ============================================ -->
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- ============================================ -->
+        <!-- SIDEBAR -->
+        <!-- ============================================ -->
+        <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 z-50 flex w-60 shrink-0 flex-col border-r border-aura-sage bg-white lg:relative lg:translate-x-0 -translate-x-full">
+            
+            <!-- Sidebar Header -->
+            <div class="sidebar-header flex h-16 items-center justify-between border-b border-aura-sage px-5">
+                <a href="#" class="flex flex-col items-start overflow-hidden">
+                    <h1 class="font-serif text-lg tracking-[0.15em] uppercase text-aura-slate leading-none whitespace-nowrap">Aura & Oak</h1>
+                    <span class="sidebar-logo-sub text-[8px] tracking-[0.35em] uppercase text-aura-moss mt-1 whitespace-nowrap">Admin Panel</span>
+                </a>
+                <button onclick="toggleSidebar()" class="flex h-8 w-8 items-center justify-center rounded-md text-aura-moss transition hover:bg-aura-sage/50 hover:text-aura-slate" aria-label="Collapse sidebar">
+                    <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <nav class="flex-1 overflow-y-auto no-scrollbar py-4">
+                
+                <!-- Section: Dashboard -->
+                <div class="mb-4">
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg bg-aura-slate px-3 py-2.5 text-sm font-medium text-white transition">
+                        <i class="fa-solid fa-gauge-high mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Dashboard</span>
+                    </a>
+                </div>
+
+                <!-- Section: Catalog -->
+                <div class="mb-4">
+                    <h3 class="sidebar-text mb-2 px-6 text-[9px] font-semibold tracking-[0.2em] uppercase text-aura-moss">Catalog</h3>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-tags mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Products</span>
+                        <span class="sidebar-badge ml-auto rounded-full bg-aura-sage px-2 py-0.5 text-[9px] font-semibold text-aura-slate">142</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-layer-group mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Categories</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-bookmark mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Collections</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-warehouse mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Inventory</span>
+                        <span class="sidebar-badge ml-auto rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-semibold text-amber-700">3</span>
+                    </a>
+                </div>
+
+                <!-- Section: Sales -->
+                <div class="mb-4">
+                    <h3 class="sidebar-text mb-2 px-6 text-[9px] font-semibold tracking-[0.2em] uppercase text-aura-moss">Sales</h3>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-box-open mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Orders</span>
+                        <span class="sidebar-badge ml-auto rounded-full bg-aura-slate px-2 py-0.5 text-[9px] font-semibold text-white">5</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-users mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Customers</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-percent mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Discounts</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-credit-card mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Payments</span>
+                    </a>
+                </div>
+
+                <!-- Section: Content -->
+                <div class="mb-4">
+                    <h3 class="sidebar-text mb-2 px-6 text-[9px] font-semibold tracking-[0.2em] uppercase text-aura-moss">Content</h3>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-newspaper mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Journal</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-file-lines mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Pages</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-regular fa-image mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Media</span>
+                    </a>
+                </div>
+
+                <!-- Section: Settings -->
+                <div class="mb-4">
+                    <h3 class="sidebar-text mb-2 px-6 text-[9px] font-semibold tracking-[0.2em] uppercase text-aura-moss">Settings</h3>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-gear mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Store Settings</span>
+                    </a>
+                    <a href="#" class="nav-item mx-3 flex items-center rounded-lg px-3 py-2 text-sm font-medium text-aura-moss transition hover:bg-aura-sage/40 hover:text-aura-slate">
+                        <i class="fa-solid fa-user-tie mr-3 w-4 text-center text-xs"></i>
+                        <span class="sidebar-text whitespace-nowrap">Staff</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Sidebar Footer: User Card -->
+            <div class="border-t border-aura-sage p-3">
+                <div class="flex items-center rounded-lg p-2 transition hover:bg-aura-sage/40">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-aura-slate font-serif text-xs text-white">
+                        JD
+                    </div>
+                    <div class="sidebar-text ml-3 min-w-0 flex-1">
+                        <p class="truncate text-xs font-semibold text-aura-slate">Jane Doe</p>
+                        <p class="truncate text-[10px] text-aura-moss">Administrator</p>
+                    </div>
+                    <i class="sidebar-text fa-solid fa-ellipsis-vertical text-[10px] text-aura-moss"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================ -->
+        <!-- MAIN AREA -->
+        <!-- ============================================ -->
+        <div class="flex flex-1 flex-col overflow-hidden">
+
+            <!-- ============================================ -->
+            <!-- TOP BAR -->
+            <!-- ============================================ -->
+            <header class="flex h-16 shrink-0 items-center justify-between border-b border-aura-sage bg-white px-4 lg:px-6">
+                <!-- Left: Mobile Toggle + Breadcrumbs -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleSidebar()" class="flex h-9 w-9 items-center justify-center rounded-md text-aura-moss transition hover:bg-aura-sage/50 hover:text-aura-slate lg:hidden" aria-label="Open sidebar">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                    </button>
+                    <nav class="hidden items-center text-[11px] tracking-widest uppercase text-aura-moss sm:flex">
+                        <a href="#" class="transition hover:text-aura-slate">Admin</a>
+                        <i class="fa-solid fa-chevron-right mx-2 text-[7px] opacity-50"></i>
+                        <span class="text-aura-slate">Dashboard</span>
+                    </nav>
+                </div>
+
+                <!-- Center: Command Palette Trigger -->
+                <button onclick="openCommandPalette()" class="hidden max-w-md flex-1 items-center justify-between rounded-lg border border-aura-sage bg-aura-bg px-3 py-2 text-left transition hover:border-aura-accent md:mx-8 md:flex">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-magnifying-glass text-xs text-aura-moss"></i>
+                        <span class="text-xs text-aura-moss">Search products, orders, customers...</span>
+                    </div>
+                    <kbd class="rounded border border-aura-sage bg-white px-1.5 py-0.5 font-mono text-[9px] text-aura-moss">⌘K</kbd>
+                </button>
+
+                <!-- Right: Actions -->
+                <div class="flex items-center space-x-2">
+                    <button class="flex h-9 w-9 items-center justify-center rounded-md text-aura-moss transition hover:bg-aura-sage/50 hover:text-aura-slate" aria-label="Quick add">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                    </button>
+                    <div class="relative">
+                        <button class="relative flex h-9 w-9 items-center justify-center rounded-md text-aura-moss transition hover:bg-aura-sage/50 hover:text-aura-slate" aria-label="Notifications">
+                            <i class="fa-regular fa-bell text-sm"></i>
+                            <span class="absolute right-1.5 top-1.5 flex h-2 w-2">
+                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-aura-accent opacity-75"></span>
+                                <span class="relative inline-flex h-2 w-2 rounded-full bg-aura-accent"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="ml-1 flex h-9 w-9 items-center justify-center rounded-full bg-aura-slate font-serif text-xs text-white">
+                        JD
+                    </div>
+                </div>
+            </header>
+
+            <!-- ============================================ -->
+            <!-- MAIN CONTENT (SCROLLABLE) -->
+            <!-- ============================================ -->
+            <main class="main-scroll flex-1 overflow-y-auto">
+                <div class="mx-auto max-w-[1400px] px-4 py-6 lg:px-8 lg:py-8">
+
+                    <!-- ============================================ -->
+                    <!-- PAGE HEADER -->
+                    <!-- ============================================ -->
+                    <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                        <div>
+                            <h1 class="font-serif text-2xl text-aura-slate lg:text-3xl">Dashboard</h1>
+                            <p class="mt-1 text-xs text-aura-moss">Welcome back, Jane. Here is what is happening at the atelier today.</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button class="flex items-center rounded-lg border border-aura-sage bg-white px-4 py-2.5 text-[10px] font-medium tracking-widest uppercase text-aura-slate transition hover:bg-aura-sage/50">
+                                <i class="fa-regular fa-calendar mr-2 text-xs"></i> Last 30 days
+                            </button>
+                            <button class="flex items-center rounded-lg bg-aura-slate px-4 py-2.5 text-[10px] font-medium tracking-widest uppercase text-white transition hover:bg-aura-moss">
+                                <i class="fa-solid fa-download mr-2 text-xs"></i> Export Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ============================================ -->
+                    <!-- METRIC CARDS -->
+                    <!-- ============================================ -->
+                    <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        
+                        <!-- Card 1: Today's Orders -->
+                        <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-aura-sage text-aura-slate">
+                                    <i class="fa-solid fa-box-open text-sm"></i>
+                                </div>
+                                <span class="flex items-center rounded-full bg-green-50 px-2 py-1 text-[9px] font-semibold text-green-700">
+                                    <i class="fa-solid fa-arrow-up mr-1 text-[7px]"></i> 12.5%
+                                </span>
+                            </div>
+                            <p class="text-[10px] font-semibold tracking-widest uppercase text-aura-moss">Today's Orders</p>
+                            <h3 class="mt-1 font-serif text-2xl text-aura-slate">48</h3>
+                            <div class="mt-4 flex h-8 items-end space-x-1">
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 40%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 60%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 35%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 75%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 55%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-accent" style="height: 90%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-accent" style="height: 100%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Today's Revenue -->
+                        <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-aura-sage text-aura-slate">
+                                    <i class="fa-solid fa-dollar-sign text-sm"></i>
+                                </div>
+                                <span class="flex items-center rounded-full bg-green-50 px-2 py-1 text-[9px] font-semibold text-green-700">
+                                    <i class="fa-solid fa-arrow-up mr-1 text-[7px]"></i> 8.2%
+                                </span>
+                            </div>
+                            <p class="text-[10px] font-semibold tracking-widest uppercase text-aura-moss">Today's Revenue</p>
+                            <h3 class="mt-1 font-serif text-2xl text-aura-slate">$4,280</h3>
+                            <div class="mt-4 flex h-8 items-end space-x-1">
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 55%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 40%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 70%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-sage" style="height: 50%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-accent" style="height: 85%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-accent" style="height: 95%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-aura-accent" style="height: 80%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Pending Fulfillment -->
+                        <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+                                    <i class="fa-solid fa-truck-fast text-sm"></i>
+                                </div>
+                                <span class="flex items-center rounded-full bg-amber-50 px-2 py-1 text-[9px] font-semibold text-amber-700">
+                                    Needs attention
+                                </span>
+                            </div>
+                            <p class="text-[10px] font-semibold tracking-widest uppercase text-aura-moss">Pending Fulfillment</p>
+                            <h3 class="mt-1 font-serif text-2xl text-aura-slate">5</h3>
+                            <div class="mt-4 flex h-8 items-end space-x-1">
+                                <div class="spark-bar w-full rounded-sm bg-amber-200" style="height: 70%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-200" style="height: 50%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-200" style="height: 30%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-300" style="height: 60%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-300" style="height: 45%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-400" style="height: 80%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-amber-500" style="height: 55%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Low Stock -->
+                        <div class="rounded-xl border border-aura-sage bg-white p-5 shadow-card">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-700">
+                                    <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+                                </div>
+                                <span class="flex items-center rounded-full bg-red-50 px-2 py-1 text-[9px] font-semibold text-red-700">
+                                    Restock soon
+                                </span>
+                            </div>
+                            <p class="text-[10px] font-semibold tracking-widest uppercase text-aura-moss">Low Stock Items</p>
+                            <h3 class="mt-1 font-serif text-2xl text-aura-slate">3</h3>
+                            <div class="mt-4 flex h-8 items-end space-x-1">
+                                <div class="spark-bar w-full rounded-sm bg-red-200" style="height: 30%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-200" style="height: 45%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-300" style="height: 25%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-300" style="height: 55%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-400" style="height: 40%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-400" style="height: 65%"></div>
+                                <div class="spark-bar w-full rounded-sm bg-red-500" style="height: 35%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================ -->
+                    <!-- TWO-COLUMN: RECENT ORDERS + LOW STOCK -->
+                    <!-- ============================================ -->
+                    <div class="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+                        
+                        <!-- Recent Orders (2/3 width) -->
+                        <div class="lg:col-span-2 rounded-xl border border-aura-sage bg-white shadow-card">
+                            <div class="flex items-center justify-between border-b border-aura-sage px-5 py-4">
+                                <div>
+                                    <h2 class="font-serif text-base text-aura-slate">Recent Orders</h2>
+                                    <p class="text-[10px] text-aura-moss">Last 10 orders placed</p>
+                                </div>
+                                <a href="#" class="text-[10px] font-medium tracking-widest uppercase text-aura-moss transition hover:text-aura-slate">View All <i class="fa-solid fa-arrow-right ml-1 text-[8px]"></i></a>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="border-b border-aura-sage/60">
+                                            <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Order</th>
+                                            <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Customer</th>
+                                            <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Total</th>
+                                            <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Status</th>
+                                            <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Row 1 -->
+                                        <tr class="data-row border-b border-aura-sage/40 transition">
+                                            <td class="px-5 py-3 font-mono text-[11px] font-semibold text-aura-slate">#AO-2024-891</td>
+                                            <td class="px-5 py-3">
+                                                <p class="text-[11px] font-medium text-aura-slate">Sarah Mwangi</p>
+                                                <p class="text-[9px] text-aura-moss">sarah@example.com</p>
+                                            </td>
+                                            <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$160.00</td>
+                                            <td class="px-5 py-3">
+                                                <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-semibold text-amber-700">
+                                                    <span class="mr-1 h-1 w-1 rounded-full bg-amber-500"></span> Pending
+                                                </span>
+                                            </td>
+                                            <td class="px-5 py-3 text-right">
+                                                <button class="text-aura-moss transition hover:text-aura-slate"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+                                            </td>
+                                        </tr>
+                                        <!-- Row 2 -->
+                                        <tr class="data-row border-b border-aura-sage/40 transition">
+                                            <td class="px-5 py-3 font-mono text-[11px] font-semibold text-aura-slate">#AO-2024-890</td>
+                                            <td class="px-5 py-3">
+                                                <p class="text-[11px] font-medium text-aura-slate">David Ochieng</p>
+                                                <p class="text-[9px] text-aura-moss">david@example.com</p>
+                                            </td>
+                                            <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$245.00</td>
+                                            <td class="px-5 py-3">
+                                                <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-semibold text-green-700">
+                                                    <span class="mr-1 h-1 w-1 rounded-full bg-green-500"></span> Paid
+                                                </span>
+                                            </td>
+                                            <td class="px-5 py-3 text-right">
+                                                <button class="text-aura-moss transition hover:text-aura-slate"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+                                            </td>
+                                        </tr>
+                                        <!-- Row 3 -->
+                                        <tr class="data-row border-b border-aura-sage/40 transition">
+                                            <td class="px-5 py-3 font-mono text-[11px] font-semibold text-aura-slate">#AO-2024-889</td>
+                                            <td class="px-5 py-3">
+                                                <p class="text-[11px] font-medium text-aura-slate">Grace Wanjiru</p>
+                                                <p class="text-[9px] text-aura-moss">grace@example.com</p>
+                                            </td>
+                                            <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$85.00</td>
+                                            <td class="px-5 py-3">
+                                                <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[9px] font-semibold text-blue-700">
+                                                    <span class="mr-1 h-1 w-1 rounded-full bg-blue-500"></span> Shipped
+                                                </span>
+                                            </td>
+                                            <td class="px-5 py-3 text-right">
+                                                <button class="text-aura-moss transition hover:text-aura-slate"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+                                            </td>
+                                        </tr>
+                                        <!-- Row 4 -->
+                                        <tr class="data-row border-b border-aura-sage/40 transition">
+                                            <td class="px-5 py-3 font-mono text-[11px] font-semibold text-aura-slate">#AO-2024-888</td>
+                                            <td class="px-5 py-3">
+                                                <p class="text-[11px] font-medium text-aura-slate">Brian Kamau</p>
+                                                <p class="text-[9px] text-aura-moss">brian@example.com</p>
+                                            </td>
+                                            <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$320.00</td>
+                                            <td class="px-5 py-3">
+                                                <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-semibold text-green-700">
+                                                    <span class="mr-1 h-1 w-1 rounded-full bg-green-500"></span> Paid
+                                                </span>
+                                            </td>
+                                            <td class="px-5 py-3 text-right">
+                                                <button class="text-aura-moss transition hover:text-aura-slate"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+                                            </td>
+                                        </tr>
+                                        <!-- Row 5 -->
+                                        <tr class="data-row transition">
+                                            <td class="px-5 py-3 font-mono text-[11px] font-semibold text-aura-slate">#AO-2024-887</td>
+                                            <td class="px-5 py-3">
+                                                <p class="text-[11px] font-medium text-aura-slate">Aisha Noor</p>
+                                                <p class="text-[9px] text-aura-moss">aisha@example.com</p>
+                                            </td>
+                                            <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$95.00</td>
+                                            <td class="px-5 py-3">
+                                                <span class="inline-flex items-center rounded-full bg-red-50 px-2 py-0.5 text-[9px] font-semibold text-red-700">
+                                                    <span class="mr-1 h-1 w-1 rounded-full bg-red-500"></span> Failed
+                                                </span>
+                                            </td>
+                                            <td class="px-5 py-3 text-right">
+                                                <button class="text-aura-moss transition hover:text-aura-slate"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Low Stock Alert (1/3 width) -->
+                        <div class="rounded-xl border border-aura-sage bg-white shadow-card">
+                            <div class="flex items-center justify-between border-b border-aura-sage px-5 py-4">
+                                <div>
+                                    <h2 class="font-serif text-base text-aura-slate">Low Stock Alert</h2>
+                                    <p class="text-[10px] text-aura-moss">Items below threshold</p>
+                                </div>
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-[10px] font-semibold text-red-700">3</span>
+                            </div>
+                            <div class="divide-y divide-aura-sage/40">
+                                <!-- Item 1 -->
+                                <div class="flex items-center space-x-3 px-5 py-3 transition hover:bg-aura-bg">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=100&auto=format&fit=crop" alt="Relaxed Linen Shirt" class="h-full w-full object-cover mix-blend-multiply">
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="truncate text-[11px] font-medium text-aura-slate">Relaxed Linen Shirt</p>
+                                        <p class="text-[9px] text-aura-moss">Sage Green / M</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[11px] font-semibold text-red-600">2 left</p>
+                                        <p class="text-[8px] text-aura-moss">SKU-001-M</p>
+                                    </div>
+                                </div>
+                                <!-- Item 2 -->
+                                <div class="flex items-center space-x-3 px-5 py-3 transition hover:bg-aura-bg">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                        <img src="https://images.unsplash.com/photo-1574634534894-89d756152e8c?q=80&w=100&auto=format&fit=crop" alt="Textured Knit Sweater" class="h-full w-full object-cover mix-blend-multiply">
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="truncate text-[11px] font-medium text-aura-slate">Textured Knit Sweater</p>
+                                        <p class="text-[9px] text-aura-moss">Oatmeal / S</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[11px] font-semibold text-red-600">1 left</p>
+                                        <p class="text-[8px] text-aura-moss">SKU-002-S</p>
+                                    </div>
+                                </div>
+                                <!-- Item 3 -->
+                                <div class="flex items-center space-x-3 px-5 py-3 transition hover:bg-aura-bg">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                        <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=100&auto=format&fit=crop" alt="Artisan Canvas Tote" class="h-full w-full object-cover mix-blend-multiply">
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="truncate text-[11px] font-medium text-aura-slate">Artisan Canvas Tote</p>
+                                        <p class="text-[9px] text-aura-moss">Natural / One Size</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[11px] font-semibold text-amber-600">4 left</p>
+                                        <p class="text-[8px] text-aura-moss">SKU-003-OS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-t border-aura-sage px-5 py-3">
+                                <a href="#" class="flex items-center justify-center text-[10px] font-medium tracking-widest uppercase text-aura-moss transition hover:text-aura-slate">
+                                    Manage Inventory <i class="fa-solid fa-arrow-right ml-2 text-[8px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================ -->
+                    <!-- REVENUE CHART -->
+                    <!-- ============================================ -->
+                    <div class="mb-6 rounded-xl border border-aura-sage bg-white shadow-card">
+                        <div class="flex flex-col justify-between gap-3 border-b border-aura-sage px-5 py-4 sm:flex-row sm:items-center">
+                            <div>
+                                <h2 class="font-serif text-base text-aura-slate">Revenue Overview</h2>
+                                <p class="text-[10px] text-aura-moss">Daily revenue for the last 30 days</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="h-2 w-2 rounded-full bg-aura-slate"></span>
+                                    <span class="text-[10px] text-aura-moss">This period</span>
+                                </div>
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="h-2 w-2 rounded-full bg-aura-sage"></span>
+                                    <span class="text-[10px] text-aura-moss">Last period</span>
+                                </div>
+                                <button class="flex items-center rounded-lg border border-aura-sage bg-white px-3 py-1.5 text-[10px] font-medium text-aura-slate transition hover:bg-aura-sage/40">
+                                    <i class="fa-solid fa-ellipsis text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <!-- Chart container -->
+                            <div class="relative h-64 w-full">
+                                <!-- Y-axis labels -->
+                                <div class="absolute left-0 top-0 flex h-full flex-col justify-between text-[9px] text-aura-moss">
+                                    <span>$500</span>
+                                    <span>$400</span>
+                                    <span>$300</span>
+                                    <span>$200</span>
+                                    <span>$100</span>
+                                    <span>$0</span>
+                                </div>
+                                <!-- Grid lines -->
+                                <div class="absolute left-10 right-0 top-0 flex h-full flex-col justify-between">
+                                    <div class="border-t border-dashed border-aura-sage/60"></div>
+                                    <div class="border-t border-dashed border-aura-sage/60"></div>
+                                    <div class="border-t border-dashed border-aura-sage/60"></div>
+                                    <div class="border-t border-dashed border-aura-sage/60"></div>
+                                    <div class="border-t border-dashed border-aura-sage/60"></div>
+                                    <div class="border-t border-aura-sage"></div>
+                                </div>
+                                <!-- Bars -->
+                                <div class="absolute bottom-0 left-10 right-0 flex h-full items-end justify-between space-x-1 pl-2">
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 35%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 45%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 28%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 55%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 42%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 60%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 38%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 70%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 52%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 65%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 48%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 75%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 58%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-sage/60" style="height: 82%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 88%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 92%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 78%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 85%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 95%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 90%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 82%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 98%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 100%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 88%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 92%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 85%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 95%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 90%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate/80" style="height: 100%"></div>
+                                    <div class="chart-bar w-full rounded-t-sm bg-aura-slate" style="height: 92%"></div>
+                                </div>
+                            </div>
+                            <!-- X-axis labels -->
+                            <div class="mt-2 flex justify-between pl-10 text-[9px] text-aura-moss">
+                                <span>Oct 1</span>
+                                <span>Oct 8</span>
+                                <span>Oct 15</span>
+                                <span>Oct 22</span>
+                                <span>Oct 30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================ -->
+                    <!-- TOP SELLING PRODUCTS -->
+                    <!-- ============================================ -->
+                    <div class="rounded-xl border border-aura-sage bg-white shadow-card">
+                        <div class="flex items-center justify-between border-b border-aura-sage px-5 py-4">
+                            <div>
+                                <h2 class="font-serif text-base text-aura-slate">Top Selling Products</h2>
+                                <p class="text-[10px] text-aura-moss">Best performers this month</p>
+                            </div>
+                            <a href="#" class="text-[10px] font-medium tracking-widest uppercase text-aura-moss transition hover:text-aura-slate">View Report <i class="fa-solid fa-arrow-right ml-1 text-[8px]"></i></a>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="border-b border-aura-sage/60">
+                                        <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Product</th>
+                                        <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Category</th>
+                                        <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Units Sold</th>
+                                        <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Revenue</th>
+                                        <th class="px-5 py-3 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Row 1 -->
+                                    <tr class="data-row border-b border-aura-sage/40 transition">
+                                        <td class="px-5 py-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=100&auto=format&fit=crop" alt="Relaxed Linen Shirt" class="h-full w-full object-cover mix-blend-multiply">
+                                                </div>
+                                                <span class="text-[11px] font-medium text-aura-slate">Relaxed Linen Shirt</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-3 text-[11px] text-aura-moss">Knitwear & Tops</td>
+                                        <td class="px-5 py-3 text-[11px] font-semibold text-aura-slate">142</td>
+                                        <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$10,650</td>
+                                        <td class="px-5 py-3">
+                                            <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-semibold text-amber-700">Low Stock</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 2 -->
+                                    <tr class="data-row border-b border-aura-sage/40 transition">
+                                        <td class="px-5 py-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                                    <img src="https://images.unsplash.com/photo-1574634534894-89d756152e8c?q=80&w=100&auto=format&fit=crop" alt="Textured Knit Sweater" class="h-full w-full object-cover mix-blend-multiply">
+                                                </div>
+                                                <span class="text-[11px] font-medium text-aura-slate">Textured Knit Sweater</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-3 text-[11px] text-aura-moss">Knitwear & Tops</td>
+                                        <td class="px-5 py-3 text-[11px] font-semibold text-aura-slate">98</td>
+                                        <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$9,310</td>
+                                        <td class="px-5 py-3">
+                                            <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-semibold text-green-700">In Stock</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 3 -->
+                                    <tr class="data-row border-b border-aura-sage/40 transition">
+                                        <td class="px-5 py-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                                    <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=100&auto=format&fit=crop" alt="Artisan Canvas Tote" class="h-full w-full object-cover mix-blend-multiply">
+                                                </div>
+                                                <span class="text-[11px] font-medium text-aura-slate">Artisan Canvas Tote</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-3 text-[11px] text-aura-moss">Bags & Totes</td>
+                                        <td class="px-5 py-3 text-[11px] font-semibold text-aura-slate">87</td>
+                                        <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$7,395</td>
+                                        <td class="px-5 py-3">
+                                            <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-semibold text-green-700">In Stock</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 4 -->
+                                    <tr class="data-row transition">
+                                        <td class="px-5 py-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-aura-sage">
+                                                    <img src="https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?q=80&w=100&auto=format&fit=crop" alt="Wide Leg Trousers" class="h-full w-full object-cover mix-blend-multiply">
+                                                </div>
+                                                <span class="text-[11px] font-medium text-aura-slate">Wide Leg Trousers</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-3 text-[11px] text-aura-moss">Bottoms</td>
+                                        <td class="px-5 py-3 text-[11px] font-semibold text-aura-slate">64</td>
+                                        <td class="px-5 py-3 font-serif text-xs font-semibold text-aura-slate">$5,440</td>
+                                        <td class="px-5 py-3">
+                                            <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[9px] font-semibold text-green-700">In Stock</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COMMAND PALETTE MODAL -->
+    <!-- ============================================ -->
+    <div id="commandPalette" class="fixed inset-0 z-[60] hidden items-start justify-center pt-[15vh]">
+        <div class="absolute inset-0 bg-aura-slate/50 backdrop-blur-sm" onclick="closeCommandPalette()"></div>
+        <div class="relative w-full max-w-lg rounded-xl border border-aura-sage bg-white shadow-2xl">
+            <div class="flex items-center border-b border-aura-sage px-4">
+                <i class="fa-solid fa-magnifying-glass text-sm text-aura-moss"></i>
+                <input type="text" placeholder="Type a command or search..." class="flex-1 bg-transparent px-3 py-4 text-sm text-aura-slate outline-none placeholder:text-aura-moss" autofocus>
+                <kbd class="rounded border border-aura-sage bg-aura-bg px-1.5 py-0.5 font-mono text-[9px] text-aura-moss">ESC</kbd>
+            </div>
+            <div class="max-h-80 overflow-y-auto p-2">
+                <p class="px-2 py-1.5 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Pages</p>
+                <a href="#" class="flex items-center rounded-lg px-3 py-2 text-xs text-aura-slate transition hover:bg-aura-sage/40">
+                    <i class="fa-solid fa-gauge-high mr-3 w-4 text-xs text-aura-moss"></i> Dashboard
+                </a>
+                <a href="#" class="flex items-center rounded-lg px-3 py-2 text-xs text-aura-slate transition hover:bg-aura-sage/40">
+                    <i class="fa-solid fa-tags mr-3 w-4 text-xs text-aura-moss"></i> Products
+                </a>
+                <a href="#" class="flex items-center rounded-lg px-3 py-2 text-xs text-aura-slate transition hover:bg-aura-sage/40">
+                    <i class="fa-solid fa-box-open mr-3 w-4 text-xs text-aura-moss"></i> Orders
+                </a>
+                <p class="mt-2 px-2 py-1.5 text-[9px] font-semibold tracking-widest uppercase text-aura-moss">Actions</p>
+                <a href="#" class="flex items-center rounded-lg px-3 py-2 text-xs text-aura-slate transition hover:bg-aura-sage/40">
+                    <i class="fa-solid fa-plus mr-3 w-4 text-xs text-aura-moss"></i> Create New Product
+                </a>
+                <a href="#" class="flex items-center rounded-lg px-3 py-2 text-xs text-aura-slate transition hover:bg-aura-sage/40">
+                    <i class="fa-solid fa-percent mr-3 w-4 text-xs text-aura-moss"></i> Create Discount Code
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================ -->
+    <script>
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            const isMobile = window.innerWidth < 1024;
+
+            if (isMobile) {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            } else {
+                sidebar.classList.toggle('collapsed');
+            }
+        }
+
+        // Command palette
+        function openCommandPalette() {
+            const palette = document.getElementById('commandPalette');
+            palette.classList.remove('hidden');
+            palette.classList.add('flex');
+            palette.querySelector('input').focus();
+        }
+
+        function closeCommandPalette() {
+            const palette = document.getElementById('commandPalette');
+            palette.classList.add('hidden');
+            palette.classList.remove('flex');
+        }
+
+        // Close sidebar on resize if transitioning to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                document.getElementById('sidebar').classList.remove('-translate-x-full');
+                document.getElementById('mobileOverlay').classList.add('hidden');
+            } else {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Command + K or Ctrl + K: open command palette
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                openCommandPalette();
+            }
+            // Escape: close command palette
+            if (e.key === 'Escape') {
+                closeCommandPalette();
+            }
+        });
+
+        // Close command palette on click outside
+        document.getElementById('commandPalette').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeCommandPalette();
+            }
+        });
+    </script>
+
+</body>
+</html>

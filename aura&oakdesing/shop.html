@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shop | Aura & Oak</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- FontAwesome for Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            // New Cool Sage & Slate Palette
+                            'aura-bg': '#F2F5F3', // Soft cool mint/white
+                            'aura-sage': '#DCE4DE', // Light sage
+                            'aura-slate': '#2C3634', // Deep slate green
+                            'aura-moss': '#5A6B65', // Mid-tone moss/stone
+                            'aura-accent': '#8A9A8E', // Muted accent green
+                        },
+                        fontFamily: {
+                            serif: ['"Playfair Display"', 'serif'],
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        boxShadow: {
+                            soft: '0 10px 40px -10px rgba(44, 54, 52, 0.08)',
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            /* Custom Checkbox Styling */
+            .custom-checkbox {
+                appearance: none;
+                background-color: #fff;
+                margin: 0;
+                font: inherit;
+                color: currentColor;
+                width: 1.15em;
+                height: 1.15em;
+                border: 1px solid #8a9a8e; /* Aura Accent */
+                border-radius: 0.15em;
+                display: grid;
+                place-content: center;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+            .custom-checkbox::before {
+                content: '';
+                width: 0.65em;
+                height: 0.65em;
+                transform: scale(0);
+                transition: 120ms transform ease-in-out;
+                box-shadow: inset 1em 1em white;
+                background-color: white;
+                transform-origin: center;
+                clip-path: polygon(
+                    14% 44%,
+                    0 65%,
+                    50% 100%,
+                    100% 16%,
+                    80% 0%,
+                    43% 62%
+                );
+            }
+            .custom-checkbox:checked {
+                background-color: #2c3634; /* Aura Slate */
+                border-color: #2c3634;
+            }
+            .custom-checkbox:checked::before {
+                transform: scale(1);
+            }
+
+            /* Hide scrollbar for horizontal scrolling elements */
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
+    </head>
+    <body
+        class="flex min-h-screen flex-col bg-aura-bg font-sans text-aura-slate antialiased selection:bg-aura-slate selection:text-white"
+    >
+        <!-- Navigation -->
+        <nav
+            class="relative z-50 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-6"
+        >
+            <!-- Logo -->
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="flex flex-col items-center">
+                    <h1
+                        class="font-serif text-xl tracking-[0.2em] uppercase md:text-2xl"
+                    >
+                        Aura & Oak
+                    </h1>
+                    <span
+                        class="mt-1 text-[8px] tracking-[0.4em] text-aura-moss uppercase md:text-[9px]"
+                        >Atelier</span
+                    >
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div
+                class="hidden space-x-10 text-[11px] font-medium tracking-widest uppercase lg:flex"
+            >
+                <a
+                    href="index.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <a
+                    href="shop.html"
+                    class="border-b border-aura-slate pb-1 text-aura-slate"
+                    >Shop</a
+                >
+                <a
+                    href="collections.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Collections</a
+                >
+                <a
+                    href="#"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Journal</a
+                >
+                <a
+                    href="#"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Our Story</a
+                >
+                <a
+                    href="#"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Contact</a
+                >
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-lg md:space-x-6">
+                <button
+                    class="text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button
+                    class="hidden text-aura-moss transition hover:text-aura-accent sm:block"
+                >
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button
+                    class="relative text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span
+                        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aura-slate text-[9px] text-white"
+                        >2</span
+                    >
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="ml-2 text-aura-moss transition hover:text-aura-accent lg:hidden"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <header
+            class="mx-auto w-full max-w-[1400px] px-6 py-12 text-center md:py-16"
+        >
+            <h1
+                class="mb-4 font-serif text-4xl text-aura-slate md:text-5xl lg:text-6xl"
+            >
+                The Atelier Shop
+            </h1>
+            <p
+                class="mx-auto max-w-md text-xs font-light text-aura-moss md:text-sm"
+            >
+                Browse our full range of consciously crafted garments and
+                accessories, designed to be worn and loved for years to come.
+            </p>
+        </header>
+
+        <!-- Main Content Layout -->
+        <main
+            class="mx-auto mb-24 flex w-full max-w-[1400px] flex-grow flex-col gap-10 px-6 lg:flex-row"
+        >
+            <!-- Sidebar Filters -->
+            <aside class="w-full shrink-0 lg:block lg:w-64">
+                <!-- Mobile Filter Toggle -->
+                <button
+                    class="mb-6 flex w-full items-center justify-between border border-aura-sage bg-white px-4 py-3 text-xs font-medium tracking-wider text-aura-slate uppercase lg:hidden"
+                >
+                    <span
+                        ><i class="fa-solid fa-sliders mr-2"></i> Filters</span
+                    >
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+
+                <div class="hidden space-y-8 lg:block">
+                    <!-- Search -->
+                    <div>
+                        <h3
+                            class="mb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Search
+                        </h3>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                placeholder="Search the atelier..."
+                                class="w-full border-b border-aura-accent bg-transparent pb-2 text-sm placeholder-aura-moss transition focus:border-aura-slate focus:outline-none"
+                            />
+                            <i
+                                class="fa-solid fa-magnifying-glass absolute right-0 bottom-2 text-xs text-aura-moss"
+                            ></i>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div>
+                        <h3
+                            class="mb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Categories
+                        </h3>
+                        <ul class="space-y-3 text-sm text-aura-moss">
+                            <li
+                                class="flex cursor-pointer items-center justify-between font-medium text-aura-slate transition hover:text-aura-slate"
+                            >
+                                <span>All Items</span>
+                                <span
+                                    class="rounded-full bg-aura-sage px-2 py-0.5 text-[10px] text-aura-slate"
+                                    >36</span
+                                >
+                            </li>
+                            <li
+                                class="flex cursor-pointer items-center justify-between transition hover:text-aura-slate"
+                            >
+                                <span>Knitwear & Tops</span>
+                                <span
+                                    class="rounded-full bg-aura-sage px-2 py-0.5 text-[10px] text-aura-slate"
+                                    >10</span
+                                >
+                            </li>
+                            <li
+                                class="flex cursor-pointer items-center justify-between transition hover:text-aura-slate"
+                            >
+                                <span>Dresses</span>
+                                <span
+                                    class="rounded-full bg-aura-sage px-2 py-0.5 text-[10px] text-aura-slate"
+                                    >8</span
+                                >
+                            </li>
+                            <li
+                                class="flex cursor-pointer items-center justify-between transition hover:text-aura-slate"
+                            >
+                                <span>Bags & Totes</span>
+                                <span
+                                    class="rounded-full bg-aura-sage px-2 py-0.5 text-[10px] text-aura-slate"
+                                    >6</span
+                                >
+                            </li>
+                            <li
+                                class="flex cursor-pointer items-center justify-between transition hover:text-aura-slate"
+                            >
+                                <span>Footwear</span>
+                                <span
+                                    class="rounded-full bg-aura-sage px-2 py-0.5 text-[10px] text-aura-slate"
+                                    >12</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div>
+                        <h3
+                            class="mb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Price Range
+                        </h3>
+                        <div class="space-y-3 text-sm text-aura-moss">
+                            <label
+                                class="flex cursor-pointer items-center space-x-3"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="custom-checkbox"
+                                />
+                                <span>Under $75</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-center space-x-3"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="custom-checkbox"
+                                    checked
+                                />
+                                <span>$75 - $150</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-center space-x-3"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="custom-checkbox"
+                                />
+                                <span>$150 - $250</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-center space-x-3"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="custom-checkbox"
+                                />
+                                <span>Over $250</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Colors -->
+                    <div>
+                        <h3
+                            class="mb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Colors
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="h-6 w-6 rounded-full border border-aura-sage bg-[#2C3634] ring-2 ring-transparent ring-offset-2 transition hover:ring-aura-accent"
+                            ></button>
+                            <button
+                                class="h-6 w-6 rounded-full border border-aura-sage bg-[#DCE4DE] ring-2 ring-transparent ring-offset-2 transition hover:ring-aura-accent"
+                            ></button>
+                            <button
+                                class="h-6 w-6 rounded-full border border-aura-sage bg-[#8A9A8E] ring-2 ring-transparent ring-offset-2 transition hover:ring-aura-accent"
+                            ></button>
+                            <button
+                                class="h-6 w-6 rounded-full border border-aura-sage bg-[#E8DCC4] ring-2 ring-transparent ring-offset-2 transition hover:ring-aura-accent"
+                            ></button>
+                            <button
+                                class="h-6 w-6 rounded-full border border-aura-sage bg-[#FFFFFF] ring-2 ring-transparent ring-offset-2 transition hover:ring-aura-accent"
+                            ></button>
+                        </div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div>
+                        <h3
+                            class="mb-4 text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Sizes
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="flex h-8 w-8 items-center justify-center border border-aura-sage text-[10px] text-aura-moss transition hover:border-aura-slate hover:bg-aura-slate hover:text-white"
+                            >
+                                XS
+                            </button>
+                            <button
+                                class="flex h-8 w-8 items-center justify-center border border-aura-slate bg-aura-slate text-[10px] text-white transition"
+                            >
+                                S
+                            </button>
+                            <button
+                                class="flex h-8 w-8 items-center justify-center border border-aura-sage text-[10px] text-aura-moss transition hover:border-aura-slate hover:bg-aura-slate hover:text-white"
+                            >
+                                M
+                            </button>
+                            <button
+                                class="flex h-8 w-8 items-center justify-center border border-aura-sage text-[10px] text-aura-moss transition hover:border-aura-slate hover:bg-aura-slate hover:text-white"
+                            >
+                                L
+                            </button>
+                            <button
+                                class="flex h-8 w-8 items-center justify-center border border-aura-sage text-[10px] text-aura-moss transition hover:border-aura-slate hover:bg-aura-slate hover:text-white"
+                            >
+                                XL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid Area -->
+            <div class="flex-1">
+                <!-- Toolbar -->
+                <div
+                    class="mb-8 flex flex-col items-center justify-between gap-4 border-b border-aura-sage pb-4 sm:flex-row"
+                >
+                    <p
+                        class="w-full text-center text-xs text-aura-moss sm:w-auto sm:text-left"
+                    >
+                        Showing
+                        <span class="font-medium text-aura-slate">1-12</span> of
+                        36 results
+                    </p>
+
+                    <div
+                        class="flex w-full items-center justify-center space-x-4 sm:w-auto sm:justify-end"
+                    >
+                        <div class="flex items-center space-x-2">
+                            <span class="hidden text-xs text-aura-moss md:block"
+                                >Sort by:</span
+                            >
+                            <select
+                                class="relative cursor-pointer appearance-none border border-aura-sage bg-transparent px-3 py-2 pr-8 text-xs text-aura-slate focus:border-aura-slate focus:outline-none"
+                                style="
+                                    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232C3634%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+                                    background-repeat: no-repeat;
+                                    background-position: right 0.7em top 50%;
+                                    background-size: 0.65em auto;
+                                "
+                            >
+                                <option>Featured</option>
+                                <option>Newest</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                        <div class="hidden border border-aura-sage sm:flex">
+                            <button class="bg-aura-sage p-2 text-aura-slate">
+                                <i class="fa-solid fa-border-all text-xs"></i>
+                            </button>
+                            <button
+                                class="p-2 text-aura-moss transition hover:text-aura-slate"
+                            >
+                                <i class="fa-solid fa-list text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div
+                    class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:gap-8 xl:grid-cols-4"
+                >
+                    <!-- Product 1 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600&auto=format&fit=crop"
+                                alt="Relaxed Linen Shirt"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                            <span
+                                class="absolute top-4 left-4 bg-aura-slate px-2 py-1 text-[9px] tracking-wider text-white uppercase"
+                                >New</span
+                            >
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Relaxed Linen Shirt
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $75.00
+                        </p>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl bg-aura-sage p-4 md:p-8"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=600&auto=format&fit=crop"
+                                alt="Artisan Canvas Tote"
+                                class="h-auto w-full object-contain mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Artisan Canvas Tote
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $85.00
+                        </p>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1574634534894-89d756152e8c?q=80&w=600&auto=format&fit=crop"
+                                alt="Textured Knit Sweater"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Textured Knit Sweater
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $95.00
+                        </p>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600&auto=format&fit=crop"
+                                alt="Leather Sandals"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Leather Sandals
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $120.00
+                        </p>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600&auto=format&fit=crop"
+                                alt="Organic Cotton Dress"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                            <span
+                                class="absolute top-4 left-4 bg-aura-accent px-2 py-1 text-[9px] tracking-wider text-white uppercase"
+                                >Sale</span
+                            >
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Organic Cotton Dress
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <p
+                                class="text-[11px] text-aura-moss line-through md:text-xs"
+                            >
+                                $110.00
+                            </p>
+                            <p
+                                class="text-[11px] font-medium text-aura-accent md:text-xs"
+                            >
+                                $88.00
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?q=80&w=600&auto=format&fit=crop"
+                                alt="Wide Leg Trousers"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Wide Leg Trousers
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $85.00
+                        </p>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?q=80&w=600&auto=format&fit=crop"
+                                alt="Silk Blend Blouse"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Silk Blend Blouse
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $65.00
+                        </p>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=600&auto=format&fit=crop"
+                                alt="Woven Straw Hat"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Woven Straw Hat
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $45.00
+                        </p>
+                    </div>
+
+                    <!-- Product 9 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop"
+                                alt="Gold Pendant Necklace"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Gold Pendant Necklace
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $55.00
+                        </p>
+                    </div>
+
+                    <!-- Product 10 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=600&auto=format&fit=crop"
+                                alt="Leather Crossbody"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Leather Crossbody
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $135.00
+                        </p>
+                    </div>
+
+                    <!-- Product 11 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=600&auto=format&fit=crop"
+                                alt="Recycled Denim Jacket"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Recycled Denim Jacket
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $110.00
+                        </p>
+                    </div>
+
+                    <!-- Product 12 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=600&auto=format&fit=crop"
+                                alt="Acetate Sunglasses"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 transition duration-300 group-hover:opacity-100"
+                            >
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i class="fa-regular fa-heart text-xs"></i>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                                >
+                                    <i
+                                        class="fa-solid fa-cart-plus text-xs"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Acetate Sunglasses
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $65.00
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-16 flex items-center justify-center space-x-2">
+                    <button
+                        class="flex h-8 w-8 cursor-not-allowed items-center justify-center border border-aura-sage text-aura-moss transition hover:border-aura-slate hover:text-aura-slate"
+                    >
+                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                    </button>
+                    <button
+                        class="flex h-8 w-8 items-center justify-center border border-aura-slate bg-aura-slate text-xs text-white transition"
+                    >
+                        1
+                    </button>
+                    <button
+                        class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                    >
+                        2
+                    </button>
+                    <button
+                        class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                    >
+                        3
+                    </button>
+                    <span class="px-1 text-aura-moss">...</span>
+                    <button
+                        class="flex h-8 w-8 items-center justify-center border border-aura-sage text-xs text-aura-slate transition hover:border-aura-slate"
+                    >
+                        6
+                    </button>
+                    <button
+                        class="flex h-8 w-8 items-center justify-center border border-aura-sage text-aura-moss transition hover:border-aura-slate hover:text-aura-slate"
+                    >
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Features Banner -->
+        <footer class="border-t border-aura-sage bg-white/50 py-12">
+            <div
+                class="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-leaf text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Carbon Neutral
+                        </h4>
+                        <p class="text-[10px]">On all deliveries</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-arrow-rotate-left text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Easy Exchanges
+                        </h4>
+                        <p class="text-[10px]">45-day return policy</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Secure Payment
+                        </h4>
+                        <p class="text-[10px]">100% secure checkout</p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-center space-y-3 text-center text-aura-moss"
+                >
+                    <i class="fa-solid fa-headset text-2xl"></i>
+                    <div>
+                        <h4
+                            class="text-[10px] font-semibold tracking-widest text-aura-slate uppercase"
+                        >
+                            Concierge Support
+                        </h4>
+                        <p class="text-[10px]">We're here to help</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Relaxed Linen Shirt | Aura & Oak</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- FontAwesome for Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            // Cool Sage & Slate Palette
+                            'aura-bg': '#F2F5F3', // Soft cool mint/white
+                            'aura-sage': '#DCE4DE', // Light sage
+                            'aura-slate': '#2C3634', // Deep slate green
+                            'aura-moss': '#5A6B65', // Mid-tone moss/stone
+                            'aura-accent': '#8A9A8E', // Muted accent green
+                        },
+                        fontFamily: {
+                            serif: ['"Playfair Display"', 'serif'],
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        boxShadow: {
+                            soft: '0 10px 40px -10px rgba(44, 54, 52, 0.08)',
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            /* Custom Checkbox Styling for Size/Color */
+            .size-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+                border: 1px solid #8a9a8e; /* aura-accent */
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: #2c3634; /* aura-slate */
+                cursor: pointer;
+                transition: all 0.2s ease;
+                border-radius: 0.25rem;
+            }
+            .size-btn:hover {
+                border-color: #2c3634;
+                background-color: #dce4de; /* aura-sage */
+            }
+            .size-btn.active {
+                background-color: #2c3634; /* aura-slate */
+                color: white;
+                border-color: #2c3634;
+            }
+            .color-btn {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+            .color-btn:hover {
+                transform: scale(1.1);
+            }
+            .color-btn.active {
+                border-color: #2c3634;
+                box-shadow:
+                    0 0 0 2px #f2f5f3,
+                    0 0 0 4px #2c3634;
+            }
+            /* Hide scrollbar for thumbnails */
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
+    </head>
+    <body
+        class="flex min-h-screen flex-col bg-aura-bg font-sans text-aura-slate antialiased selection:bg-aura-slate selection:text-white"
+    >
+        <!-- Navigation -->
+        <nav
+            class="relative z-50 mx-auto flex w-full max-w-[1400px] items-center justify-between border-b border-aura-sage px-6 py-6"
+        >
+            <!-- Logo -->
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="flex flex-col items-center">
+                    <h1
+                        class="font-serif text-xl tracking-[0.2em] uppercase md:text-2xl"
+                    >
+                        Aura & Oak
+                    </h1>
+                    <span
+                        class="mt-1 text-[8px] tracking-[0.4em] text-aura-moss uppercase md:text-[9px]"
+                        >Atelier</span
+                    >
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div
+                class="hidden space-x-10 text-[11px] font-medium tracking-widest uppercase lg:flex"
+            >
+                <a
+                    href="index.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <a
+                    href="shop.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Shop</a
+                >
+                <a
+                    href="collections.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Collections</a
+                >
+                <a
+                    href="journal.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Journal</a
+                >
+                <a
+                    href="story.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Our Story</a
+                >
+                <a
+                    href="contact.html"
+                    class="text-aura-moss transition hover:text-aura-slate"
+                    >Contact</a
+                >
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-lg md:space-x-6">
+                <button
+                    class="text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button
+                    class="hidden text-aura-moss transition hover:text-aura-accent sm:block"
+                >
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button
+                    class="relative text-aura-moss transition hover:text-aura-accent"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span
+                        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-aura-slate text-[9px] text-white"
+                        >3</span
+                    >
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button
+                    class="ml-2 text-aura-moss transition hover:text-aura-accent lg:hidden"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Breadcrumbs -->
+        <div class="mx-auto w-full max-w-[1400px] px-6 py-6">
+            <nav
+                class="flex text-[10px] tracking-widest text-aura-moss uppercase"
+            >
+                <a href="index.html" class="transition hover:text-aura-slate"
+                    >Home</a
+                >
+                <span class="mx-2">/</span>
+                <a href="shop.html" class="transition hover:text-aura-slate"
+                    >Shop</a
+                >
+                <span class="mx-2">/</span>
+                <a href="shop.html" class="transition hover:text-aura-slate"
+                    >Knitwear & Tops</a
+                >
+                <span class="mx-2">/</span>
+                <span class="text-aura-slate">Relaxed Linen Shirt</span>
+            </nav>
+        </div>
+
+        <!-- Main Product Section -->
+        <main class="mx-auto mb-24 w-full max-w-[1400px] flex-grow px-6">
+            <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
+                <!-- Product Gallery (Left Side) -->
+                <div
+                    class="flex w-full flex-col-reverse gap-4 md:flex-row lg:w-3/5"
+                >
+                    <!-- Thumbnails -->
+                    <div
+                        class="no-scrollbar flex shrink-0 gap-4 overflow-x-auto md:w-24 md:flex-col md:overflow-y-auto"
+                    >
+                        <button
+                            class="h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-aura-slate bg-aura-sage md:h-32 md:w-full"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=200&auto=format&fit=crop"
+                                alt="Linen Shirt Front"
+                                class="h-full w-full object-cover mix-blend-multiply"
+                            />
+                        </button>
+                        <button
+                            class="h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent bg-aura-sage transition hover:border-aura-accent md:h-32 md:w-full"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=200&auto=format&fit=crop"
+                                alt="Linen Shirt Side"
+                                class="h-full w-full object-cover mix-blend-multiply"
+                            />
+                        </button>
+                        <button
+                            class="h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent bg-aura-sage transition hover:border-aura-accent md:h-32 md:w-full"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?q=80&w=200&auto=format&fit=crop"
+                                alt="Linen Shirt Detail"
+                                class="h-full w-full object-cover mix-blend-multiply"
+                            />
+                        </button>
+                        <button
+                            class="h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent bg-aura-sage transition hover:border-aura-accent md:h-32 md:w-full"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=200&auto=format&fit=crop"
+                                alt="Linen Shirt Back"
+                                class="h-full w-full object-cover mix-blend-multiply"
+                            />
+                        </button>
+                    </div>
+
+                    <!-- Main Image -->
+                    <div
+                        class="relative aspect-[4/5] flex-1 overflow-hidden rounded-2xl bg-aura-sage"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop"
+                            alt="Relaxed Linen Shirt"
+                            class="h-full w-full object-cover mix-blend-multiply"
+                        />
+                        <button
+                            class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-aura-slate backdrop-blur transition hover:bg-white"
+                        >
+                            <i class="fa-regular fa-heart text-sm"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 left-4 bg-aura-slate px-3 py-1.5 text-[9px] tracking-wider text-white uppercase"
+                            >New Arrival</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Product Info (Right Side) -->
+                <div class="w-full lg:w-2/5">
+                    <div class="sticky top-24">
+                        <!-- Category & Title -->
+                        <span
+                            class="mb-2 block text-[10px] tracking-widest text-aura-accent uppercase"
+                            >Knitwear & Tops</span
+                        >
+                        <h1
+                            class="mb-4 font-serif text-3xl text-aura-slate md:text-4xl"
+                        >
+                            Relaxed Linen Shirt
+                        </h1>
+
+                        <!-- Ratings -->
+                        <div class="mb-6 flex items-center space-x-2">
+                            <div class="flex text-xs text-aura-accent">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <span class="text-[10px] text-aura-moss"
+                                >(24 Reviews)</span
+                            >
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-8 flex items-center space-x-4">
+                            <span class="font-serif text-2xl text-aura-slate"
+                                >$75.00</span
+                            >
+                            <span class="text-sm text-aura-moss line-through"
+                                >$95.00</span
+                            >
+                            <span
+                                class="rounded bg-red-100 px-2 py-1 text-[10px] font-medium tracking-widest text-red-700 uppercase"
+                                >Save 20%</span
+                            >
+                        </div>
+
+                        <!-- Short Description -->
+                        <p
+                            class="mb-8 text-sm leading-relaxed font-light text-aura-moss"
+                        >
+                            Crafted from 100% GOTS-certified organic linen, this
+                            shirt is breathable, durable, and gets softer with
+                            every wash. Designed for a relaxed fit with a
+                            classic collar and mother-of-pearl buttons.
+                        </p>
+
+                        <!-- Color Selection -->
+                        <div class="mb-8">
+                            <div class="mb-3 flex items-end justify-between">
+                                <h3
+                                    class="text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                                >
+                                    Color:
+                                    <span class="font-normal text-aura-moss"
+                                        >Sage Green</span
+                                    >
+                                </h3>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button
+                                    class="color-btn active"
+                                    style="background-color: #8a9a8e"
+                                    title="Sage Green"
+                                ></button>
+                                <button
+                                    class="color-btn"
+                                    style="background-color: #e8dcc4"
+                                    title="Oatmeal"
+                                ></button>
+                                <button
+                                    class="color-btn"
+                                    style="
+                                        background-color: #ffffff;
+                                        border: 1px solid #8a9a8e;
+                                    "
+                                    title="White"
+                                ></button>
+                                <button
+                                    class="color-btn"
+                                    style="background-color: #2c3634"
+                                    title="Slate"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- Size Selection -->
+                        <div class="mb-8">
+                            <div class="mb-3 flex items-end justify-between">
+                                <h3
+                                    class="text-[11px] font-semibold tracking-widest text-aura-slate uppercase"
+                                >
+                                    Size
+                                </h3>
+                                <button
+                                    class="border-b border-aura-moss pb-0.5 text-[10px] text-aura-moss transition hover:border-aura-slate hover:text-aura-slate"
+                                >
+                                    Size Guide
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="size-btn">XS</button>
+                                <button class="size-btn active">S</button>
+                                <button class="size-btn">M</button>
+                                <button class="size-btn">L</button>
+                                <button class="size-btn">XL</button>
+                            </div>
+                        </div>
+
+                        <!-- Quantity & Add to Cart -->
+                        <div class="mb-8 flex flex-col gap-4 sm:flex-row">
+                            <!-- Quantity -->
+                            <div
+                                class="flex w-full items-center justify-between rounded border border-aura-sage bg-white px-4 py-3.5 sm:w-auto sm:justify-center"
+                            >
+                                <button
+                                    class="px-1 text-sm text-aura-moss hover:text-aura-slate"
+                                >
+                                    -
+                                </button>
+                                <span class="px-6 text-sm text-aura-slate"
+                                    >1</span
+                                >
+                                <button
+                                    class="px-1 text-sm text-aura-moss hover:text-aura-slate"
+                                >
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Add to Cart Button -->
+                            <button
+                                class="flex flex-1 items-center justify-center rounded bg-aura-slate py-4 text-[11px] font-medium tracking-widest text-white uppercase transition duration-300 hover:bg-aura-moss"
+                            >
+                                <i
+                                    class="fa-solid fa-cart-plus mr-2 text-[10px]"
+                                ></i>
+                                Add to Bag
+                            </button>
+                        </div>
+
+                        <!-- Buy Now Button -->
+                        <button
+                            class="mb-8 w-full rounded border border-aura-slate bg-white py-4 text-[11px] font-medium tracking-widest text-aura-slate uppercase transition duration-300 hover:bg-aura-slate hover:text-white"
+                        >
+                            Buy It Now
+                        </button>
+
+                        <!-- Trust Badges -->
+                        <div class="space-y-4 border-t border-aura-sage pt-8">
+                            <div
+                                class="flex items-center space-x-3 text-aura-moss"
+                            >
+                                <i
+                                    class="fa-solid fa-leaf w-5 text-aura-accent"
+                                ></i>
+                                <span class="text-[11px] font-light"
+                                    >Made from 100% GOTS-certified organic
+                                    linen.</span
+                                >
+                            </div>
+                            <div
+                                class="flex items-center space-x-3 text-aura-moss"
+                            >
+                                <i
+                                    class="fa-solid fa-truck w-5 text-aura-accent"
+                                ></i>
+                                <span class="text-[11px] font-light"
+                                    >Free carbon-neutral shipping on orders over
+                                    $99.</span
+                                >
+                            </div>
+                            <div
+                                class="flex items-center space-x-3 text-aura-moss"
+                            >
+                                <i
+                                    class="fa-solid fa-arrow-rotate-left w-5 text-aura-accent"
+                                ></i>
+                                <span class="text-[11px] font-light"
+                                    >45-day easy returns & exchanges.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <section class="mt-24">
+                <div
+                    class="no-scrollbar flex space-x-8 overflow-x-auto border-b border-aura-sage md:space-x-12"
+                >
+                    <button
+                        class="border-b-2 border-aura-slate pb-4 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-slate uppercase"
+                    >
+                        Description
+                    </button>
+                    <button
+                        class="pb-4 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Materials & Care
+                    </button>
+                    <button
+                        class="pb-4 text-[11px] font-medium tracking-widest whitespace-nowrap text-aura-moss uppercase transition hover:text-aura-slate"
+                    >
+                        Shipping & Returns
+                    </button>
+                </div>
+
+                <div
+                    class="max-w-3xl py-8 text-sm leading-relaxed font-light text-aura-moss"
+                >
+                    <p class="mb-4">
+                        Our Relaxed Linen Shirt is the epitome of effortless
+                        elegance. Designed for a loose, comfortable fit that
+                        drapes beautifully, it features a classic collar, a
+                        curved hem, and sustainably sourced mother-of-pearl
+                        buttons.
+                    </p>
+                    <p class="mb-4">
+                        Perfect for layering in cooler months or wearing on its
+                        own during warmer days, this shirt is a versatile staple
+                        for the conscious wardrobe. The fabric is pre-washed to
+                        prevent shrinkage and ensure maximum softness from the
+                        first wear.
+                    </p>
+                    <ul class="mt-6 list-disc space-y-2 pl-5">
+                        <li>Relaxed, oversized fit</li>
+                        <li>Classic point collar</li>
+                        <li>Curved hem with side slits</li>
+                        <li>Mother-of-pearl buttons</li>
+                        <li>Model is 5'10" and wears a size S</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- You May Also Like -->
+            <section class="mt-24">
+                <div class="mb-10 flex items-end justify-between">
+                    <h2 class="font-serif text-2xl text-aura-slate md:text-3xl">
+                        You May Also Like
+                    </h2>
+                    <a
+                        href="shop.html"
+                        class="flex items-center text-[10px] font-medium tracking-widest text-aura-moss uppercase transition hover:text-aura-slate"
+                        >View All
+                        <i class="fa-solid fa-arrow-right ml-2 text-[8px]"></i
+                    ></a>
+                </div>
+
+                <div
+                    class="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4 lg:gap-8"
+                >
+                    <!-- Product 1 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=600&auto=format&fit=crop"
+                                alt="Artisan Canvas Tote"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <button
+                                class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                            >
+                                <i class="fa-regular fa-heart text-xs"></i>
+                            </button>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Artisan Canvas Tote
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $85.00
+                        </p>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1574634534894-89d756152e8c?q=80&w=600&auto=format&fit=crop"
+                                alt="Textured Knit Sweater"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <button
+                                class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                            >
+                                <i class="fa-regular fa-heart text-xs"></i>
+                            </button>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Textured Knit Sweater
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $95.00
+                        </p>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?q=80&w=600&auto=format&fit=crop"
+                                alt="Wide Leg Trousers"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <button
+                                class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                            >
+                                <i class="fa-regular fa-heart text-xs"></i>
+                            </button>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Wide Leg Trousers
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $85.00
+                        </p>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative mb-4 aspect-[3/4] overflow-hidden rounded-2xl bg-aura-sage"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600&auto=format&fit=crop"
+                                alt="Leather Sandals"
+                                class="h-full w-full object-cover mix-blend-multiply transition duration-500 group-hover:scale-105"
+                            />
+                            <button
+                                class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur transition hover:bg-aura-slate hover:text-white"
+                            >
+                                <i class="fa-regular fa-heart text-xs"></i>
+                            </button>
+                        </div>
+                        <h3
+                            class="mb-1 text-[11px] font-medium text-aura-slate transition group-hover:text-aura-accent md:text-xs"
+                        >
+                            Leather Sandals
+                        </h3>
+                        <p class="text-[11px] text-aura-moss md:text-xs">
+                            $120.00
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Global Footer -->
+        <footer class="mt-auto bg-aura-slate pt-16 pb-8 text-white">
+            <div class="mx-auto max-w-[1400px] px-6">
+                <!-- Top Section: Newsletter & Links -->
+                <div
+                    class="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24"
+                >
+                    <!-- Newsletter Signup -->
+                    <div>
+                        <h3 class="mb-4 font-serif text-2xl md:text-3xl">
+                            Join the Inner Circle
+                        </h3>
+                        <p
+                            class="mb-6 max-w-md text-sm font-light text-gray-400"
+                        >
+                            Subscribe to receive early access to new edits,
+                            sustainable living tips, and exclusive atelier
+                            updates.
+                        </p>
+                        <form class="flex max-w-md flex-col gap-3 sm:flex-row">
+                            <input
+                                type="email"
+                                placeholder="Your email address"
+                                class="flex-1 rounded-sm border border-white/20 bg-white/10 px-6 py-4 text-sm text-white placeholder-gray-400 transition focus:border-aura-accent focus:outline-none"
+                            />
+                            <button
+                                type="submit"
+                                class="rounded-sm bg-white px-8 py-4 text-[10px] font-medium tracking-widest whitespace-nowrap text-aura-slate uppercase transition hover:bg-aura-sage"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                        <p class="mt-3 text-[9px] text-gray-500">
+                            By subscribing, you agree to our Privacy Policy.
+                        </p>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                        <!-- Column 1: Shop -->
+                        <div>
+                            <h4
+                                class="mb-6 text-[11px] font-semibold tracking-widest text-aura-accent uppercase"
+                            >
+                                Shop
+                            </h4>
+                            <ul
+                                class="space-y-3 text-sm font-light text-gray-400"
+                            >
+                                <li>
+                                    <a
+                                        href="shop.html"
+                                        class="transition hover:text-white"
+                                        >New Arrivals</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="shop.html"
+                                        class="transition hover:text-white"
+                                        >Best Sellers</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="collections.html"
+                                        class="transition hover:text-white"
+                                        >Collections</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="shop.html"
+                                        class="transition hover:text-white"
+                                        >Accessories</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="shop.html"
+                                        class="transition hover:text-white"
+                                        >Sale</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Column 2: About -->
+                        <div>
+                            <h4
+                                class="mb-6 text-[11px] font-semibold tracking-widest text-aura-accent uppercase"
+                            >
+                                About
+                            </h4>
+                            <ul
+                                class="space-y-3 text-sm font-light text-gray-400"
+                            >
+                                <li>
+                                    <a
+                                        href="story.html"
+                                        class="transition hover:text-white"
+                                        >Our Story</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="journal.html"
+                                        class="transition hover:text-white"
+                                        >Journal</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="story.html"
+                                        class="transition hover:text-white"
+                                        >Sustainability</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="transition hover:text-white"
+                                        >Artisans</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="transition hover:text-white"
+                                        >Careers</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Column 3: Support -->
+                        <div>
+                            <h4
+                                class="mb-6 text-[11px] font-semibold tracking-widest text-aura-accent uppercase"
+                            >
+                                Support
+                            </h4>
+                            <ul
+                                class="space-y-3 text-sm font-light text-gray-400"
+                            >
+                                <li>
+                                    <a
+                                        href="contact.html"
+                                        class="transition hover:text-white"
+                                        >Contact Us</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="faq.html"
+                                        class="transition hover:text-white"
+                                        >FAQ</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="transition hover:text-white"
+                                        >Shipping & Returns</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="transition hover:text-white"
+                                        >Size Guide</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="terms.html"
+                                        class="transition hover:text-white"
+                                        >Terms & Conditions</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Section: Socials & Payment -->
+                <div
+                    class="flex flex-col items-center justify-between gap-6 border-t border-white/10 py-8 md:flex-row"
+                >
+                    <!-- Social Media -->
+                    <div class="flex items-center space-x-6">
+                        <span
+                            class="text-[10px] font-semibold tracking-widest text-gray-500 uppercase"
+                            >Follow Us</span
+                        >
+                        <div class="flex space-x-4 text-lg">
+                            <a
+                                href="#"
+                                class="text-gray-400 transition hover:text-white"
+                                ><i class="fa-brands fa-instagram"></i
+                            ></a>
+                            <a
+                                href="#"
+                                class="text-gray-400 transition hover:text-white"
+                                ><i class="fa-brands fa-pinterest"></i
+                            ></a>
+                            <a
+                                href="#"
+                                class="text-gray-400 transition hover:text-white"
+                                ><i class="fa-brands fa-facebook-f"></i
+                            ></a>
+                            <a
+                                href="#"
+                                class="text-gray-400 transition hover:text-white"
+                                ><i class="fa-brands fa-tiktok"></i
+                            ></a>
+                        </div>
+                    </div>
+
+                    <!-- Payment Icons -->
+                    <div
+                        class="flex items-center space-x-3 text-2xl text-gray-400"
+                    >
+                        <i
+                            class="fa-brands fa-cc-visa transition hover:text-white"
+                        ></i>
+                        <i
+                            class="fa-brands fa-cc-mastercard transition hover:text-white"
+                        ></i>
+                        <i
+                            class="fa-brands fa-cc-amex transition hover:text-white"
+                        ></i>
+                        <i
+                            class="fa-brands fa-cc-paypal transition hover:text-white"
+                        ></i>
+                        <i
+                            class="fa-brands fa-apple-pay transition hover:text-white"
+                        ></i>
+                    </div>
+                </div>
+
+                <!-- Bottom Section: Copyright & Legal -->
+                <div
+                    class="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row"
+                >
+                    <p
+                        class="text-[10px] font-light tracking-wider text-gray-500 uppercase"
+                    >
+                        &copy; 2024 Aura & Oak Atelier. All rights reserved.
+                    </p>
+                    <div
+                        class="flex space-x-6 text-[10px] font-light tracking-wider text-gray-500 uppercase"
+                    >
+                        <a href="terms.html" class="transition hover:text-white"
+                            >Privacy Policy</a
+                        >
+                        <a href="terms.html" class="transition hover:text-white"
+                            >Terms of Service</a
+                        >
+                        <a href="#" class="transition hover:text-white"
+                            >Cookie Policy</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
